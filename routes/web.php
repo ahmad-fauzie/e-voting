@@ -30,6 +30,7 @@ Route::get('/sidebar', [AuthController::class, 'sidebar'])->name('sidebar');
 Route::get('/hasil', [HasilController::class, 'index'])->name('hasil.index');
 Route::get('/hasil/fetchall', [HasilController::class, 'fetchAll'])->name('hasil.fetchAll');
 
+
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
