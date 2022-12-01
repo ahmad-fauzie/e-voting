@@ -3,166 +3,197 @@
 @section('title', 'Daftar Kandidat')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
+    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-0 shadow rounded mt-3 mb-5">
-                <div class="card-header bg-danger d-flex justify-content-between align-items-center">
-                    <h3 class="text-light">Daftar Kandidat</h3>
-                    <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addKandidatModal"><i
-                            class="bi-plus-circle me-2"></i>Tambah Kandidat</button>
-                </div>
-                <div class="card-body" id="show_all_kandidat">
-                    <h1 class="text-center text-secondary my-5">Loading...</h1>
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <h3>Data Master Kandidat</h3>
+            {{-- <p class="text-subtitle text-muted">A good dashboard to display your statistics</p> --}}
+        </div>
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-0 shadow rounded mt-3 mb-5">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h3 class="text-secondary">Daftar Kandidat</h3>
+                            <div class="d-flex justify-content-center align-items-center" style="gap: 3px;">
+                                <button class="btn btn-light p-2">
+                                    <a href="#" class="text-dark deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
+                                </button>
+                                <button class="btn btn-light text-dark p-2" data-bs-toggle="modal"
+                                    data-bs-target="#addKandidatModal"><i class="bi bi-plus-circle"></i> Tambah Kandidat</button>
+                            </div>
+                        </div>
+                        <div class="card-body" id="show_all_kandidat">
+                            <h1 class="text-center text-secondary my-5">Loading...</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="addKandidatModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-bs-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kandidat Baru</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="#" method="POST" id="add_kandidat_form" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body p-4 bg-light g-3">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="nama" class="form-label">Nama Lengkap</label>
-                                <input type="text" name="name" class="form-control" placeholder="Masukkan Nama"
-                                    required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Masukkan Email"
-                                    required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="nis" class="form-label">NIS</label>
-                                <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS"
-                                    required>
-                            </div>
-                            <div class="col-6 mb-3">
-                                <label for="kelas" class="form-label">Kelas</label>
+            <div class="modal fade" id="addKandidatModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                data-bs-backdrop="static" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title white" id="exampleModalLabel">Tambah Kandidat Baru</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <form action="#" method="POST" id="add_kandidat_form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body text-dark">
                                 <div class="row">
-                                    <div class="col-6 col-md-6">
-                                        <select name="kelas" class="form-select">
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nama" class="form-label">Nama Lengkap</label>
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Masukkan Nama" required>
                                     </div>
-                                    <div class="col-6 col-md-6">
-                                        <select name="jurusan" class="form-select">
-                                            <option value="rpl">RPL</option>
-                                            <option value="mm">MM</option>
-                                            <option value="pftv">PFTV</option>
-                                        </select>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control"
+                                            placeholder="Masukkan Email" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nis" class="form-label">NIS</label>
+                                        <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS"
+                                            required>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="kelas" class="form-label">Kelas</label>
+                                        <div class="row">
+                                            <div class="col-6 col-md-6">
+                                                <select name="kelas" class="form-select">
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6 col-md-6">
+                                                <select name="jurusan" class="form-select">
+                                                    <option value="rpl">RPL</option>
+                                                    <option value="mm">MM</option>
+                                                    <option value="pftv">PFTV</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="visi" class="form-label">Visi</label>
+                                        <textarea name="visi" name="visi" class="form-control" placeholder="Masukkan Visi" required></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="misi" class="form-label">Misi</label>
+                                        <textarea name="misi" name="misi" class="form-control" placeholder="Masukkan Misi" required></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="foto" class="form-label">Foto</label>
+                                        <input type="file" class="form-control" name="foto" row="10" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="visi" class="form-label">Visi</label>
-                                <textarea name="visi" name="visi" class="form-control" placeholder="Masukkan Visi" required></textarea>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Close</span>
+                                </button>
+                                {{-- <button type="submit" id="add_kandidat_btn" class="btn btn-primary">Simpan</button> --}}
+                                <button type="submit" class="btn btn-primary ml-1" id="add_kandidat_btn" data-bs-dismiss="modal">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Simpan</span>
+                                </button>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="misi" class="form-label">Misi</label>
-                                <textarea name="misi" name="misi" class="form-control" placeholder="Masukkan Misi" required></textarea>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="foto" class="form-label">Foto</label>
-                                <input type="file" class="form-control" name="foto" row="10" required>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="add_kandidat_btn" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="editKandidatModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-bs-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Kandidat</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="#" method="POST" id="edit_kandidat_form" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body p-4 bg-light g-3">
-                        <div class="row">
-                            <input type="hidden" name="kandidat_id" id="kandidat_id">
-                            <input type="hidden" name="kandidat_foto" id="kandidat_foto">
-                            <div class="col-md-6 mb-3">
-                                <label for="nama" class="form-label">Nama Lengkap</label>
-                                <input type="text" id="name" name="name" class="form-control"
-                                    placeholder="Masukkan Nama" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" name="email" class="form-control"
-                                    placeholder="Masukkan Email" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="nis" class="form-label">Email</label>
-                                <input type="text" id="nis" name="nis" class="form-control"
-                                    placeholder="Masukkan NIS" required>
-                            </div>
-                            <div class="col-6 mb-3">
-                                <label for="kelas" class="form-label">Kelas</label>
+            </div>
+
+            <div class="modal fade" id="editKandidatModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                data-bs-backdrop="static" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title white" id="exampleModalLabel">Ubah Kandidat</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <form action="#" method="POST" id="edit_kandidat_form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body text-dark">
                                 <div class="row">
-                                    <div class="col-6 col-md-6">
-                                        <select name="kelas" id="kelas" class="form-select">
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
+                                    <input type="hidden" name="kandidat_id" id="kandidat_id">
+                                    <input type="hidden" name="kandidat_foto" id="kandidat_foto">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nama" class="form-label">Nama Lengkap</label>
+                                        <input type="text" id="name" name="name" class="form-control"
+                                            placeholder="Masukkan Nama" required>
                                     </div>
-                                    <div class="col-6 col-md-6">
-                                        <select name="jurusan" id="jurusan" class="form-select">
-                                            <option value="rpl">RPL</option>
-                                            <option value="mm">MM</option>
-                                            <option value="pftv">PFTV</option>
-                                        </select>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control"
+                                            placeholder="Masukkan Email" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nis" class="form-label">Email</label>
+                                        <input type="text" id="nis" name="nis" class="form-control"
+                                            placeholder="Masukkan NIS" required>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="kelas" class="form-label">Kelas</label>
+                                        <div class="row">
+                                            <div class="col-6 col-md-6">
+                                                <select name="kelas" id="kelas" class="form-select">
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6 col-md-6">
+                                                <select name="jurusan" id="jurusan" class="form-select">
+                                                    <option value="rpl">RPL</option>
+                                                    <option value="mm">MM</option>
+                                                    <option value="pftv">PFTV</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="visi" class="form-label">Visi</label>
+                                        <textarea name="visi" id="visi" name="visi" class="form-control" placeholder="Masukkan Visi" required></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="misi" class="form-label">Misi</label>
+                                        <textarea name="misi" id="misi" name="misi" class="form-control" placeholder="Masukkan Misi" required></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="foto" class="form-label">Foto</label>
+                                        <input type="file" class="form-control" name="foto" row="10">
+                                    </div>
+                                    <div class="col-md-12 text-center mt-2" id="foto">
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="visi" class="form-label">Visi</label>
-                                <textarea name="visi" id="visi" name="visi" class="form-control" placeholder="Masukkan Visi" required></textarea>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Close</span>
+                                </button>
+                                {{-- <button type="submit" id="edit_kandidat_btn" class="btn btn-success">Ubah</button> --}}
+                                <button type="submit" class="btn btn-primary ml-1" id="edit_kandidat_btn" data-bs-dismiss="modal">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Simpan</span>
+                                </button>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="misi" class="form-label">Misi</label>
-                                <textarea name="misi" id="misi" name="misi" class="form-control" placeholder="Masukkan Misi" required></textarea>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="foto" class="form-label">Foto</label>
-                                <input type="file" class="form-control" name="foto" row="10">
-                            </div>
-                            <div class="col-md-12 text-center mt-2" id="foto">
-
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="edit_kandidat_btn" class="btn btn-success">Ubah</button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 
@@ -195,7 +226,7 @@
                                 'Kandidat Berhasil Ditambahkan!',
                                 'success'
                             )
-                        } else{
+                        } else {
                             Swal.fire(
                                 'Gagal!',
                                 'Terdapat kesamaan Data Dengan Kandidat Lain!',
@@ -258,7 +289,7 @@
                                 'Kandidat Berhasil Diubah!',
                                 'success'
                             )
-                        } else{
+                        } else {
                             Swal.fire(
                                 'Gagal!',
                                 'Terdapat kesamaan Email/NIS Dengan Kandidat Lain!',

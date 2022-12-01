@@ -38,10 +38,7 @@ class KandidatController extends Controller
                 <th>Aksi</th>
               </tr>
             </thead>
-            <tbody>
-                <div style="text-align: end; margin-bottom: 5px;">
-                    <a href="#" class="text-danger deleteAll" style="text-decoration: none;"><i class="bi-trash"></i> Hapus Semua</a>
-                </div>';
+            <tbody>';
             $no = 1;
       foreach ($kandidats as $kandidat) {
         $output .= '<tr>
@@ -55,9 +52,9 @@ class KandidatController extends Controller
                 <td>' . $kandidat->visi . '</td>
                 <td>' . $kandidat->misi . '</td>
                 <td>
-                  <a href="#" id="' . $kandidat->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editKandidatModal"><i class="bi-pencil-square h4"></i></a>
+                  <a href="#" id="' . $kandidat->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editKandidatModal"><i class="bi-pencil-square h5 text-yellow"></i></a>
 
-                  <a href="#" id="' . $kandidat->id . '" class="text-danger mx-1 deleteIcon"><i class="bi-trash h4"></i></a>
+                  <a href="#" id="' . $kandidat->id . '" class="mx-1 deleteIcon"><i class="bi-trash h5 text-danger"></i></a>
                 </td>
               </tr>';
       }

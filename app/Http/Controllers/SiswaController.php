@@ -37,22 +37,20 @@ class SiswaController extends Controller
                 <th>Aksi</th>
               </tr>
             </thead>
-            <tbody>
-                <div style="text-align: end; margin-bottom: 5px;">
-                    <a href="#" class="text-danger deleteAll" style="text-decoration: none;"><i class="bi-trash"></i> Hapus Semua</a>
-                </div>';
+            <tbody>';
             $no = 1;
 			foreach ($siswas as $siswa) {
+        $badge = $siswa->status == 'Sudah Memilih' ? 'succes' : 'danger';
 				$output .= '<tr>
                 <td>' . $no++ . '</td>
                 <td>' . $siswa->name . '</td>
                 <td>' . $siswa->nis . '</td>
                 <td>' . $siswa->email . '</td>
-                <td style="text-transform: uppercase;">' . $siswa->status . '</td>
+                <td><span class="badge bg-' . $badge . '">' . $siswa->status . '</span></td>
                 <td>
-                  <a href="#" id="' . $siswa->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editSiswaModal"><i class="bi-pencil-square h4"></i></a>
+                  <a href="#" id="' . $siswa->id . '" class="mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editSiswaModal"><i class="bi-pencil-square h5 text-yellow"></i></a>
 
-                  <a href="#" id="' . $siswa->id . '" class="text-danger mx-1 deleteIcon"><i class="bi-trash h4"></i></a>
+                  <a href="#" id="' . $siswa->id . '" class="mx-1 deleteIcon"><i class="bi-trash h5 text-danger"></i></a>
                 </td>
               </tr>';
 			}

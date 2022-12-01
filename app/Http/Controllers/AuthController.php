@@ -111,4 +111,8 @@ class AuthController extends Controller
        Auth::logout();
        return Redirect('/');
     }
+
+    public function sidebar(){
+        return view('layouts.sidebar');
+    }
 }

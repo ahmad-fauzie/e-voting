@@ -3,128 +3,168 @@
 @section('title', 'Daftar Siswa')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
+    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-0 shadow rounded mt-3 mb-5">
-                <div class="card-header bg-danger d-flex justify-content-between align-items-center">
-                    <h3 class="text-light">Daftar Siswa</h3>
-                    <div>
-                        <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addSiswaModal"><i
-                                class="bi-plus-circle me-2"></i>Tambah Siswa</button>
-                        <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#importSiswaModal"><i
-                                class="bi-file-earmark-spreadsheet"></i> Import File</button>
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <h3>Data Master Siswa</h3>
+        </div>
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-0 shadow rounded mt-3 mb-5">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h3 class="text-secondary">Daftar Siswa</h3>
+                            <div class="d-flex justify-content-center align-items-center" style="gap: 3px;">
+                                <button class="btn btn-light p-2">
+                                    <a href="#" class="text-dark deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
+                                </button>
+                                <button class="btn btn-light text-dark p-2" data-bs-toggle="modal"
+                                    data-bs-target="#addSiswaModal"><i class="bi-plus-circle me-2"></i>Tambah Siswa</button>
+                                <button class="btn btn-light text-dark p-2" data-bs-toggle="modal"
+                                    data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet"></i> Import
+                                    File</button>
+                            </div>
+                        </div>
+                        <div class="card-body" id="show_all_siswa">
+                            <h1 class="text-center text-secondary my-5">Loading...</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body" id="show_all_siswa">
-                    <h1 class="text-center text-secondary my-5">Loading...</h1>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="importSiswaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-bs-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Import File</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="importSiswaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                data-bs-backdrop="static" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title white" id="exampleModalLabel">Import File</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <form action="#" method="POST" id="import_siswa_form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="form-group mb-3">
+                                    <button id="download_excel" class="btn btn-primary p-2"><i class="bi bi-download"></i>
+                                        Template</button>
+                                </div>
+                                <div class="custom-file text-left">
+                                    <input type="file" name="siswa" class="custom-file-input" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Close</span>
+                                </button>
+                                <button type="submit" id="import_siswa_btn" class="btn btn-primary ml-1"
+                                    data-bs-dismiss="modal">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Simpan</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form action="#" method="POST" id="import_siswa_form" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body p-4 bg-light g-3">
-                        <div class="form-group mb-3">
-                            <button id="download_excel" class="btn btn-primary"><i class="bi bi-download"></i> Template</button>
-                        </div>
-                        <div class="custom-file text-left">
-                            <input type="file" name="siswa" class="custom-file-input" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="import_siswa_btn" class="btn btn-primary">Import</button>
-                    </div>
-                </form>
             </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="addSiswaModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Siswa Baru</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="addSiswaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                data-bs-backdrop="static" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title white" id="exampleModalLabel">Siswa Baru</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <form action="#" method="POST" id="add_siswa_form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body text-dark">
+                                <div class="form-group mb-3">
+                                    <label for="nama" class="form-label">Nama Lengkap</label>
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="Masukkan Nama" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="Masukkan Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">NIS</label>
+                                    <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Close</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary ml-1" id="add_siswa_btn"
+                                    data-bs-dismiss="modal">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Simpan</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form action="#" method="POST" id="add_siswa_form" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body p-4 bg-light g-3">
-                        <div class="form-group mb-3">
-                            <label for="nama" class="form-label">Nama Lengkap</label>
-                            <input type="text" name="name" class="form-control" placeholder="Masukkan Nama" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Masukkan Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">NIS</label>
-                            <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="add_siswa_btn" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
             </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="editSiswaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-bs-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Siswa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="editSiswaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                data-bs-backdrop="static" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title white" id="exampleModalLabel">Data Siswa</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <form action="#" method="POST" id="edit_siswa_form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body text-dark">
+                                <input type="hidden" name="siswa_id" id="siswa_id">
+                                <div class="form-group mb-3">
+                                    <label for="nama" class="form-label">Nama Lengkap</label>
+                                    <input type="text" id="name" name="name" class="form-control"
+                                        placeholder="Masukkan Nama" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control"
+                                        placeholder="Masukkan Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nis" class="form-label">NIS</label>
+                                    <input type="text" id="nis" name="nis" class="form-control"
+                                        placeholder="Masukkan NIS" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Close</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary ml-1" id="edit_siswa_btn" data-bs-dismiss="modal">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Simpan</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form action="#" method="POST" id="edit_siswa_form" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body p-4 bg-light g-3">
-                        <input type="hidden" name="siswa_id" id="siswa_id">
-                        <div class="form-group mb-3">
-                            <label for="nama" class="form-label">Nama Lengkap</label>
-                            <input type="text" id="name" name="name" class="form-control"
-                                placeholder="Masukkan Nama" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control"
-                                placeholder="Masukkan Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nis" class="form-label">NIS</label>
-                            <input type="text" id="nis" name="nis" class="form-control"
-                                placeholder="Masukkan NIS" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="edit_siswa_btn" class="btn btn-success">Ubah</button>
-                    </div>
-                </form>
             </div>
-        </div>
+        </section>
     </div>
-
 
 @endsection
 
@@ -143,7 +183,7 @@
                 const url = '{{ route('siswa.export') }}';
                 window.location = url;
             });
-            
+
 
             // import siswa ajax request
             $("#import_siswa_form").submit(function(e) {
@@ -194,7 +234,7 @@
                                 'Siswa Berhasil Ditambahkan!',
                                 'success'
                             )
-                        } else{
+                        } else {
                             Swal.fire(
                                 'Gagal!',
                                 'Terdapat Kesamaan Data Dengan Siswa Lain!',
@@ -260,7 +300,7 @@
                                 'Siswa Berhasil Diubah!',
                                 'success'
                             )
-                        } else{
+                        } else {
                             Swal.fire(
                                 'Gagal!',
                                 'Terdapat kesamaan Data Dengan Siswa Lain!',

@@ -3,34 +3,43 @@
 @section('title', 'Hasil')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
+    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" /> --}}
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-0 shadow rounded mt-3 mb-5">
-                <div class="card-header bg-danger d-flex justify-content-between align-items-center">
-                    <h3 class="text-light">Hasil Voting</h3>
-                    <div class="text-light">
-                        <span class="fw-bold" id="start-end">Waktu Mulai : </span>
-                        <span class="fw-bold" id="cd-days">00</span> Hari
-                        <span class="fw-bold" id="cd-hours">00</span> Jam
-                        <span class="fw-bold" id="cd-minutes">00</span> Menit
-                        <span class="fw-bold" id="cd-seconds">00</span> Detik
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <h3>Hasil</h3>
+            {{-- <p class="text-subtitle text-muted">A good dashboard to display your statistics</p> --}}
+        </div>
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-0 shadow rounded mt-3 mb-5">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h3 class="text-secondary">Hasil Voting</h3>
+                            <div class="text-dark">
+                                <span class="fw-bold" id="start-end">Waktu Mulai : </span>
+                                <span class="fw-bold" id="cd-days">00</span> Hari
+                                <span class="fw-bold" id="cd-hours">00</span> Jam
+                                <span class="fw-bold" id="cd-minutes">00</span> Menit
+                                <span class="fw-bold" id="cd-seconds">00</span> Detik
+                            </div>
+                        </div>
+                        <div class="card-body" id="show_all_hasil">
+                            <div id="container" style="max-width: 100%; height: 500px; margin: 0 auto;"></div>
+                            @if (Auth::check() && Auth::user()->level === 'admin')
+                                <div id="container-button" style="margin: 0 auto; text-align: center; margin-top: 10px;">
+                                </div>
+                            @endif
+                            <textarea id="infile" style="display:none;"></textarea>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body" id="show_all_hasil">
-                    <div id="container" style="max-width: 100%; height: 500px; margin: 0 auto;"></div>
-                    @if (Auth::check() && Auth::user()->level === 'admin')
-                        <div id="container-button" style="margin: 0 auto; text-align: center; margin-top: 10px;"></div>
-                    @endif
-                    <textarea id="infile" style="display:none;"></textarea>
-                </div>
             </div>
-        </div>
+        </section>
     </div>
 
 @endsection
