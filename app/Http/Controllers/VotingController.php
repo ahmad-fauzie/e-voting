@@ -88,33 +88,35 @@ class VotingController extends Controller
 		$output = '';
 		if ($kandidats->count() > 0) {
             foreach ($kandidats as $kandidat) {
-				$output .= '<div class="card col-md-6" style="max-width: 500px; margin: auto; margin-top: 30px;">
-                <div class="card"
-                    style="align-items: center; padding:10px; margin:auto; margin-top:16px; text-transform: uppercase">
-                    <div class="card-body" style="margin-bottom: -35px; text-align: center;">
-                        <img src="storage/kandidats/' . $kandidat->foto . '"
-                            class="card-img-top rounded" style="min-width: 50px; max-width: 150px"
-                            alt="...">
-                        <h6 class="card-title" style="margin-top:10px;">' . $kandidat->name . '</h6>
-                        <p>' . $kandidat->kelas . ' '  . $kandidat->jurusan . '</p>
+                $output .= '<div class="col-12 col-md-4 overflow-scroll mx-md-auto" style="max-height: 100vh;">
+                <div class="card card-statistic">
+                    <div class="card-body p-0">
+                        <div class="text-center m-4">
+                            <img src="storage/kandidats/' . $kandidat->foto . '" alt="" width="150"
+                                class="rounded-circle">
+                        </div>
+                        <div class="divider">
+                            <div class="divider-text bg-transparent px-2">
+                                <h3 class="card-title text-center m-0">' . $kandidat->name . '</h3>
+                            </div>
+                        </div>
+                        <div class="card-right align-items-center p-3 pt-0 text-uppercase">
+                            <h5 class="text-white">Visi :</h5>
+                            <p class="text-capitalize fs-6">' . $kandidat->visi . '</p>
+                            <h5 class="text-white mt-4">Misi :</h5>
+                            <pre class="text-capitalize fs-6 text-white mb-0" style="white-space: pre-wrap; font-family: Raleway;">' . $kandidat->misi . '
+                            </pre>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Visi</h5>
-                    <p class="card-text">' . $kandidat->visi . '</p>
-                    <h5 class="card-title">Misi</h5>
-                    <p class="card-text">' . $kandidat->misi . '</p>
-                </div>
-                <div class="card-footer">';
+                    <div class="text-center mb-3">';
                 if($hasil->contains('id_user', $user->id)){
-                    $output .= '<a href="#" class="btn btn-sm btn-danger" style="width: -moz-available; pointer-events: none;">Anda Sudah Memilih!</a>
+                    $output .= '<a href="#" class="btn icon icon-left btn-danger"><i class="bi-exclamation-circle"></i> Anda Sudah Memilih</a>';
+                }else{
+                    $output .='<a href="#" id="' . $kandidat->id . '" class="btn icon icon-left btn-primary voting"><i class="bi-pin-angle"></i> Pilih</a>';
+                }
+                $output .='</div>
                     </div>
                 </div>';
-                } else{
-                    $output .= '<a href="#" id="' . $kandidat->id . '" class="btn btn-sm btn-success voting" style="width: -moz-available;">Pilih</a>
-                        </div>
-                    </div>';
-                }
 			}
 		} else {
 			$output = '<h1 class="text-center text-secondary my-5">Data Kandidat Tidak Tersedia!</h1>';

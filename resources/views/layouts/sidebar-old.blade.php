@@ -57,13 +57,13 @@
                         <span>Jadwal Voting</span>
                     </a>
                 </li>
+                @endif
                 <li class="sidebar-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
                     <a href="{{ route('setting.index') }}" class="sidebar-link">
                         <i data-feather="user" width="20"></i>
                         <span>Profile</span>
                     </a>
                 </li>
-                @endif
                 @endif
             </ul>
         </div>

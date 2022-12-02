@@ -45,7 +45,7 @@
                                 <i data-feather="x"></i>
                             </button>
                         </div>
-                        <form action="#" method="POST" id="add_kandidat_form" enctype="multipart/form-data">
+                        <form action="#" method="POST" id="add_kandidat_form" enctype="multipart/form-data" class="overflow-scroll">
                             @csrf
                             <div class="modal-body text-dark">
                                 <div class="row">
@@ -84,11 +84,11 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="visi" class="form-label">Visi</label>
-                                        <textarea name="visi" name="visi" class="form-control" placeholder="Masukkan Visi" required></textarea>
+                                        <textarea name="visi" name="visi" rows="10" class="form-control" placeholder="Masukkan Visi" required></textarea>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="misi" class="form-label">Misi</label>
-                                        <textarea name="misi" name="misi" class="form-control" placeholder="Masukkan Misi" required></textarea>
+                                        <textarea name="misi" name="misi" rows="10" class="form-control" placeholder="Masukkan Misi" required></textarea>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="foto" class="form-label">Foto</label>
@@ -122,7 +122,7 @@
                                 <i data-feather="x"></i>
                             </button>
                         </div>
-                        <form action="#" method="POST" id="edit_kandidat_form" enctype="multipart/form-data">
+                        <form action="#" method="POST" id="edit_kandidat_form" enctype="multipart/form-data" class="overflow-scroll">
                             @csrf
                             <div class="modal-body text-dark">
                                 <div class="row">
@@ -163,11 +163,11 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="visi" class="form-label">Visi</label>
-                                        <textarea name="visi" id="visi" name="visi" class="form-control" placeholder="Masukkan Visi" required></textarea>
+                                        <textarea name="visi" id="visi" name="visi" rows="10" class="form-control" placeholder="Masukkan Visi" required></textarea>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="misi" class="form-label">Misi</label>
-                                        <textarea name="misi" id="misi" name="misi" class="form-control" placeholder="Masukkan Misi" required></textarea>
+                                        <textarea name="misi" id="misi" name="misi" rows="10" class="form-control" placeholder="Masukkan Misi" required></textarea>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="foto" class="form-label">Foto</label>

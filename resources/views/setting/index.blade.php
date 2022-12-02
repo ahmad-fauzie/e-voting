@@ -36,7 +36,7 @@
                                 <div class="form-group d-flex justify-content-between align-items-center">
                                     <button type="submit" id="edit_user_btn" class="btn btn-primary">Simpan</button>
                                     <a href="#" class="text-secondary mx-1" data-bs-toggle="modal"
-                                        data-bs-target="#editPasswordModal"><i class="bi-pencil-square h4"></i> Ubah
+                                        data-bs-target="#editPasswordModal"><i class="bi-pencil-square h4"></i> Reset
                                         Password</a>
                                 </div>
                             </form>
@@ -50,7 +50,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg-primary">
-                            <h5 class="modal-title white" id="exampleModalLabel">Ubah Password</h5>
+                            <h5 class="modal-title white" id="exampleModalLabel">Reset Password</h5>
                             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <i data-feather="x"></i>
                             </button>

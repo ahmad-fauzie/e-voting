@@ -3,30 +3,36 @@
 @section('title', 'Voting')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
 @endsection
 
 @section('content')
-    {{-- <div class="container"> --}}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-0 shadow rounded mt-3 mb-5">
-                <div class="card-header bg-danger d-flex justify-content-between align-items-center">
-                    <h3 class="text-light">VOTING</h3>
-                    <div class="text-light">
-                        <span class="fw-bold" id="start-end">Waktu Mulai : </span>
-                        <span class="fw-bold" id="cd-days">00</span> Hari
-                        <span class="fw-bold" id="cd-hours">00</span> Jam
-                        <span class="fw-bold" id="cd-minutes">00</span> Menit
-                        <span class="fw-bold" id="cd-seconds">00</span> Detik
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <h3>Voting</h3>
+            {{-- <p class="text-subtitle text-muted">A good dashboard to display your statistics</p> --}}
+        </div>
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-0 shadow rounded mt-3 mb-5">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h3 class="text-secondary">VOTING</h3>
+                            <div class="text-dark">
+                                <span class="fw-bold" id="start-end">Waktu Mulai : </span>
+                                <span class="fw-bold" id="cd-days">00</span> Hari
+                                <span class="fw-bold" id="cd-hours">00</span> Jam
+                                <span class="fw-bold" id="cd-minutes">00</span> Menit
+                                <span class="fw-bold" id="cd-seconds">00</span> Detik
+                            </div>
+                        </div>
+                        <div class="card-body row p-4 gy-md-4" id="show_all_kandidat">
+                            <h1 class="text-center text-secondary my-5">Loading...</h1>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body row" id="show_all_kandidat">
-                    <h1 class="text-center text-secondary my-5">Loading...</h1>
-                </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 
@@ -76,7 +82,7 @@
             });
 
             // vote error not yet
-            $(document).on('click', '.voting-error', function(e){
+            $(document).on('click', '.voting-error', function(e) {
                 e.preventDefault();
                 Swal.fire({
                     title: 'Voting Belum Dimulai',
@@ -89,7 +95,7 @@
             });
 
             // vote error end
-            $(document).on('click', '.voting-error-end', function(e){
+            $(document).on('click', '.voting-error-end', function(e) {
                 e.preventDefault();
                 Swal.fire({
                     title: 'Voting Sudah Selesai',
@@ -114,14 +120,14 @@
                         console.log(now);
                         console.log(start);
                         let timer, days, hours, minutes, seconds;
-                        if(now >= start && now <= end){
+                        if (now >= start && now <= end) {
                             $('#start-end').html('Waktu Berakhir : ');
                             timer = end - now;
-                        } else if(now < start){
+                        } else if (now < start) {
                             // $('.voting').attr('id', 0);
                             $('.voting').attr('class', 'btn btn-sm btn-success voting-error');
                             timer = start - now;
-                        } else{
+                        } else {
                             $('#start-end').html('Waktu Berakhir : ');
                             $('.voting').attr('class', 'btn btn-sm btn-success voting-error-end');
                             timer = start - now;
@@ -164,8 +170,10 @@
                         if (response.waktu_count) {
                             $("#show_all_kandidat").html(response.output);
                             timer(waktu[0].waktu_awal, waktu[0].waktu_akhir);
-                        } else{
-                            $("#show_all_kandidat").html('<h1 class="text-center text-secondary my-5">Jadwal Voting Tidak Tersedia!</h1>');
+                        } else {
+                            $("#show_all_kandidat").html(
+                                '<h1 class="text-center text-secondary my-5">Jadwal Voting Tidak Tersedia!</h1>'
+                            );
                         }
                     }
                 });
