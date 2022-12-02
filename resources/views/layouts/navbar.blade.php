@@ -5,6 +5,8 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    @if(Auth::check())
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
             <li class="dropdown nav-icon">
@@ -44,11 +46,14 @@
                     <a class="dropdown-item {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}"><i data-feather="user"></i> Account</a>
                     <a class="dropdown-item" href="#"><i data-feather="mail"></i>
                         Messages</a>
+                    @if(Auth::user()->level === 'admin')
                     <a class="dropdown-item {{ request()->routeIs('waktu.*') ? 'active' : '' }}" href="{{ route('waktu.index') }}"><i data-feather="settings"></i> Settings</a>
+                    @endif
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"><i data-feather="log-out"></i> Logout</a>
                 </div>
             </li>
         </ul>
     </div>
+    @endif
 </nav>
