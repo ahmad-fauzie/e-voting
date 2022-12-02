@@ -11,7 +11,19 @@
 @section('content')
     <div class="main-content container-fluid">
         <div class="page-title">
-            <h3>Data Master Siswa</h3>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h3>Data Master Siswa</h3>
+                </div>
+                <div class="col-12 col-md-6">
+                    <nav aria-label="breadcrumb" class='breadcrumb-header text-right'>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Siswa</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
         <section class="section">
             <div class="row">
@@ -19,13 +31,13 @@
                     <div class="card border-0 shadow rounded mt-3 mb-5">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="text-secondary">Daftar Siswa</h3>
-                            <div class="d-flex justify-content-center align-items-center" style="gap: 3px;">
-                                <button class="btn btn-light p-2">
-                                    <a href="#" class="text-dark deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
+                            <div class="d-flex justify-content-center align-items-center nav-button" style="gap: 3px;">
+                                <button class="btn btn-secondary p-2">
+                                    <a href="#" class="text-white deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
                                 </button>
-                                <button class="btn btn-light text-dark p-2" data-bs-toggle="modal"
+                                <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
                                     data-bs-target="#addSiswaModal"><i class="bi-plus-circle me-2"></i>Tambah Siswa</button>
-                                <button class="btn btn-light text-dark p-2" data-bs-toggle="modal"
+                                <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
                                     data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet"></i> Import
                                     File</button>
                             </div>
@@ -154,7 +166,8 @@
                                     <i class="bx bx-x d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Close</span>
                                 </button>
-                                <button type="submit" class="btn btn-primary ml-1" id="edit_siswa_btn" data-bs-dismiss="modal">
+                                <button type="submit" class="btn btn-primary ml-1" id="edit_siswa_btn"
+                                    data-bs-dismiss="modal">
                                     <i class="bx bx-check d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Simpan</span>
                                 </button>
@@ -393,7 +406,7 @@
                     url: '{{ route('siswa.fetchAll') }}',
                     method: 'get',
                     success: function(response) {
-                        $("#show_all_siswa").html(response);
+                        $("#show_all_siswa").html(response.data);
                         $("table").DataTable({
                             order: [0, 'asc']
                         });

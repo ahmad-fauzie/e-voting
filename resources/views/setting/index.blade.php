@@ -34,7 +34,7 @@
                                         placeholder="Masukkan Email" required>
                                 </div>
                                 <div class="form-group d-flex justify-content-between align-items-center">
-                                    <button type="submit" id="edit_user_btn" class="btn btn-primary">Simpan</button>
+                                    <button type="submit" id="edit_user_btn" class="btn btn-secondary">Simpan</button>
                                     <a href="#" class="text-secondary mx-1" data-bs-toggle="modal"
                                         data-bs-target="#editPasswordModal"><i class="bi-pencil-square h4"></i> Reset
                                         Password</a>

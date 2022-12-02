@@ -40,7 +40,7 @@ class SiswaController extends Controller
             <tbody>';
             $no = 1;
 			foreach ($siswas as $siswa) {
-        $badge = $siswa->status == 'Sudah Memilih' ? 'succes' : 'danger';
+        $badge = $siswa->status == 'Sudah Memilih' ? 'success' : 'danger';
 				$output .= '<tr>
                 <td>' . $no++ . '</td>
                 <td>' . $siswa->name . '</td>
@@ -55,10 +55,13 @@ class SiswaController extends Controller
               </tr>';
 			}
 			$output .= '</tbody></table></div>';
-			echo $output;
 		} else {
-			echo '<h1 class="text-center text-secondary my-5">Data Siswa Tidak Tersedia!</h1>';
+			$output = '<h1 class="text-center text-secondary my-5">Data Siswa Tidak Tersedia!</h1>';
 		}
+    return response()->json([
+      'data' => $output,
+      'count' => $siswa->count()
+    ]);
 	}
 
     /**

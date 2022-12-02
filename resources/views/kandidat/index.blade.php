@@ -21,10 +21,10 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="text-secondary">Daftar Kandidat</h3>
                             <div class="d-flex justify-content-center align-items-center" style="gap: 3px;">
-                                <button class="btn btn-light p-2">
-                                    <a href="#" class="text-dark deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
+                                <button class="btn btn-secondary p-2">
+                                    <a href="#" class="text-white deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
                                 </button>
-                                <button class="btn btn-light text-dark p-2" data-bs-toggle="modal"
+                                <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
                                     data-bs-target="#addKandidatModal"><i class="bi bi-plus-circle"></i> Tambah Kandidat</button>
                             </div>
                         </div>

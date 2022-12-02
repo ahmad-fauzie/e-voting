@@ -20,7 +20,7 @@
                     <div class="card border-0 shadow rounded mt-3 mb-5">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="text-secondary">Waktu Pemilihan</h3>
-                            <button class="btn btn-light text-dark p-2" id="add_waktu" data-bs-toggle="modal"
+                            <button class="btn btn-secondary text-white p-2" id="add_waktu" data-bs-toggle="modal"
                                 data-bs-target="#addWaktuModal"><i class="bi-clock me-2"></i>Setting Waktu</button>
                         </div>
                         <div class="card-body" id="show_all_waktu">

@@ -107,7 +107,7 @@
                             $('#container').highcharts(chart(data));
                             $('#start-end').html('Waktu Berakhir : ');
                             $('#container-button').html(
-                                '<button class="btn btn-primary export"><i class="bi bi-download"></i> Unduh Hasil</button>'
+                                '<button class="btn btn-secondary text-white p-2 export"><i class="bi bi-download"></i> Unduh Hasil</button>'
                             );
                             timer = end - now;
                         } else {

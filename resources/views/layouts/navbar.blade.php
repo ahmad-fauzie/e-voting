@@ -26,7 +26,7 @@
                             <div>
                                 <h6 class='text-bold'>New Order</h6>
                                 <p class='text-xs'>
-                                    An order made by Ahmad Saugi for product Samsung Galaxy S69
+                                    An order made by Ahmad Fauzi for product Samsung Galaxy S69
                                 </p>
                             </div>
                         </li>
@@ -38,9 +38,9 @@
                 <a href="#" data-bs-toggle="dropdown"
                     class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                     <div class="avatar me-1">
-                        <img src="{{ asset('images/logo.png')}}" alt="" srcset="">
+                        <img src="{{ asset('images/avatar.svg')}}" alt="" srcset="">
                     </div>
-                    <div class="d-none d-md-block d-lg-inline-block">Hi, Fauzi</div>
+                    <div class="d-none d-md-block d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}"><i data-feather="user"></i> Account</a>
