@@ -9,7 +9,7 @@
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
-            <li class="dropdown nav-icon">
+            {{-- <li class="dropdown nav-icon">
                 <a href="#" data-bs-toggle="dropdown"
                     class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
                     <div class="d-lg-inline-block">
@@ -32,7 +32,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
             
             <li class="dropdown">
                 <a href="#" data-bs-toggle="dropdown"
@@ -44,8 +44,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}"><i data-feather="user"></i> Account</a>
-                    <a class="dropdown-item" href="#"><i data-feather="mail"></i>
-                        Messages</a>
+                    {{-- <a class="dropdown-item" href="#"><i data-feather="mail"></i>
+                        Messages</a> --}}
                     @if(Auth::user()->level === 'admin')
                     <a class="dropdown-item {{ request()->routeIs('waktu.*') ? 'active' : '' }}" href="{{ route('waktu.index') }}"><i data-feather="settings"></i> Settings</a>
                     @endif

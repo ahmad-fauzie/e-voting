@@ -88,7 +88,7 @@ class VotingController extends Controller
 		$output = '';
 		if ($kandidats->count() > 0) {
             foreach ($kandidats as $kandidat) {
-                $output .= '<div class="col-12 col-md-4 overflow-scroll mx-md-auto" style="max-height: 100vh;">
+                $output .= '<div class="col-12 col-md-4 overflow-auto mx-md-auto" style="max-height: 100vh;">
                 <div class="card card-statistic">
                     <div class="card-body p-0">
                         <div class="text-center m-4">

@@ -20,72 +20,102 @@
                     <div class="card border-0 shadow rounded mt-3 mb-5">
                         <div class="card-body" id="show_all_kandidat">
                             <div class="row">
-                                <div class="col-md-4 col-sm-12" style="min-width: 325px;">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <img class="card-img img-fluid"
-                                                src="{{ asset('images/siswa-biru.png') }}"
-                                                alt="Card image">
-                                            <div
-                                                class="card-img-overlay overlay-dark d-flex justify-content-between flex-column">
-                                                <div class="overlay-content">
-                                                    <h4 class="card-title mb-50">Siswa</h4>
-                                                    <p class="card-text text-ellipsis">Vote : {{ $vote }}</p>
-                                                    <p class="card-text text-ellipsis">Belum Vote : {{ $notVote }}</p>
-                                                    <p class="card-text text-ellipsis">Keseluruhan : {{ $jumlah }}</p>
-                                                </div>
-                                                <div class="overlay-status">
-                                                    {{-- <p class="mb-25"><small>Last updated 3 mins ago</small></p> --}}
-                                                    <a href="{{ route('siswa.index') }}" class="btn btn-outline-white btn-sm">Lihat Detail</a>
+                                @if (Auth::check() && Auth::user()->level === 'admin')
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <img class="card-img img-fluid" src="{{ asset('images/siswa-biru.png') }}"
+                                                    alt="Card image">
+                                                <div
+                                                    class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column overflow-auto">
+                                                    <div class="overlay-content">
+                                                        <h4 class="card-title mb-50">Siswa</h4>
+                                                        <p class="card-text text-ellipsis">Vote : {{ $vote }}</p>
+                                                        <p class="card-text text-ellipsis">Belum Vote : {{ $notVote }}
+                                                        </p>
+                                                        <p class="card-text text-ellipsis">Keseluruhan : {{ $jumlah }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="overlay-status">
+                                                        {{-- <p class="mb-25"><small>Last updated 3 mins ago</small></p> --}}
+                                                        <a href="{{ route('siswa.index') }}"
+                                                            class="btn btn-outline-white btn-sm">Lihat Detail</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12" style="min-width: 325px;">
-                                    <div class="card">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <img class="card-img img-fluid" src="{{ asset('images/depan-smk-65.png') }}"
+                                                    alt="Card image">
+                                                <div
+                                                    class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column overflow-auto">
+                                                    <div class="overlay-content">
+                                                        <h4 class="card-title mb-50">Pemberitahuan</h4>
+                                                        <p class="card-text text-ellipsis">Lorem ipsum dolor sit amet,
+                                                            consectetur adipisicing elit. Saepe quos optio vitae, in
+                                                            deleniti ipsa, animi, at ullam distinctio eum nobis corrupti
+                                                            blanditiis laudantium harum quae. Sapiente nihil autem dolorem.
+                                                        </p>
+                                                    </div>
+                                                    <div class="overlay-status">
+                                                        {{-- <p class="mb-25"><small>Last updated 3 mins ago</small></p> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <img class="card-img img-fluid" src="{{ asset('images/kandidat.png') }}"
+                                                    alt="Card image">
+                                                <div
+                                                    class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column overflow-auto">
+                                                    <div class="overlay-content">
+                                                        <h4 class="card-title mb-50">Kandidat</h4>
+                                                        <p class="card-text text-ellipsis">Keseluruhan : {{ $kandidat }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="overlay-status text-right">
+                                                        {{-- <p class="mb-25"><small>Last updated 3 mins ago</small></p> --}}
+                                                        <a href="{{ route('kandidat.index') }}" class="btn btn-outline-white btn-sm">Lihat
+                                                            Detail</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if (Auth::check() && Auth::user()->level === 'siswa')
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="card" style="text-align: center;">
                                         <div class="card-content">
-                                            <img class="card-img img-fluid"
-                                                src="{{ asset('images/modern-teaching-concept-P7BTJU7.jpg') }}"
+                                            <img class="card-img img-fluid" src="{{ asset('images/depan-smk-65.png') }}"
                                                 alt="Card image">
                                             <div
-                                                class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                                                class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column overflow-auto">
                                                 <div class="overlay-content">
-                                                    <h4 class="card-title mb-50">Online Messages</h4>
-                                                    <p class="card-text text-ellipsis">
-                                                        Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
-                                                        chups.
+                                                    <h2 class="card-title mb-5 fs-2">Pemberitahuan</h2>
+                                                    <p class="card-text text-ellipsis fs-3">Lorem ipsum dolor sit amet,
+                                                        consectetur adipisicing elit. Sapiente facere vitae hic tempore
+                                                        dicta expedita veritatis, dolorum earum iure tempora perferendis
+                                                        repudiandae. Sunt alias numquam ducimus ea laborum aperiam harum.
                                                     </p>
                                                 </div>
                                                 <div class="overlay-status">
-                                                    <p class="mb-25"><small>Last updated 3 mins ago</small></p>
-                                                    <a href="#" class="btn btn-primary btn-sm">Check More </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12" style="min-width: 325px;">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <img class="card-img img-fluid"
-                                                src="{{ asset('images/kandidat.png') }}"
-                                                alt="Card image">
-                                            <div
-                                                class="card-img-overlay overlay-dark d-flex justify-content-between flex-column">
-                                                <div class="overlay-content">
-                                                    <h4 class="card-title mb-50">Kandidat</h4>
-                                                    <p class="card-text text-ellipsis">Keseluruhan : {{ $kandidat }}</p>
-                                                </div>
-                                                <div class="overlay-status text-right">
                                                     {{-- <p class="mb-25"><small>Last updated 3 mins ago</small></p> --}}
-                                                    <a href="#" class="btn btn-outline-white btn-sm">Lihat Detail</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endif
+                            
                             <h1 class="text-center text-secondary my-5">Loading...</h1>
                         </div>
                     </div>

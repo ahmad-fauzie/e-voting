@@ -15,9 +15,9 @@ class AuthController extends Controller
     public function index(){
         if ($user = Auth::user()) {
             if ($user->level == 'admin') {
-                return redirect()->intended('kandidat');
+                return redirect()->intended('dashboard');
             } elseif ($user->level == 'siswa') {
-                return redirect()->intended('voting ');
+                return redirect()->intended('dashboard');
             }
         }
         return view('auth.login');
@@ -35,9 +35,9 @@ class AuthController extends Controller
             if (Auth::attempt($kredensil)) {
                 $user = Auth::user();
                 if ($user->level == 'admin') {
-                    return redirect()->intended('kandidat');
+                    return redirect()->intended('dashboard');
                 } elseif ($user->level == 'siswa') {
-                    return redirect()->intended('voting');
+                    return redirect()->intended('dashboard');
                 }
                 return redirect()->intended('/');
             }
@@ -50,9 +50,9 @@ class AuthController extends Controller
     public function register(){
         if ($user = Auth::user()) {
             if ($user->level == 'admin') {
-                return redirect()->intended('kandidat');
+                return redirect()->intended('dashboard');
             } elseif ($user->level == 'siswa') {
-                return redirect()->intended('voting ');
+                return redirect()->intended('dashboard');
             }
         }
         return view('auth.register');
@@ -79,9 +79,9 @@ class AuthController extends Controller
                 $user = Auth::user();
                 Siswa::where('nis', $kredensil)->update(['id_user' => $user->id]);
                 if ($user->level == 'admin') {
-                    return redirect()->intended('kandidat');
+                    return redirect()->intended('dashboard');
                 } elseif ($user->level == 'siswa') {
-                    return redirect()->intended('voting');
+                    return redirect()->intended('dashboard');
                 }
                 return redirect()->intended('/');
             }

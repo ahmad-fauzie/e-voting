@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Models\Hasil;
 use App\Models\Kandidat;
+use App\Models\Waktu;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
