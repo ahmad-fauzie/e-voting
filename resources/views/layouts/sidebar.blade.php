@@ -8,7 +8,7 @@
                 @if(Auth::check())
                 <li class='sidebar-title'>Menu Utama</li>
                 <li class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    <a href="{{ route('dashboard.index') }}" class='sidebar-link'>
                         <i data-feather="home" width="20"></i>
                         <span>Dashboard</span>
                     </a>
