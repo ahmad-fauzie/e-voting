@@ -1,0 +1,237 @@
+/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
+@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
+/* End Fonts */
+/* Start Global rules */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* End Global rules */
+
+/* Start body rules */
+body {
+    /* background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); */
+/* background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); */
+background-attachment: fixed;
+  background-repeat: no-repeat;
+
+    font-family: 'Vibur', cursive;
+/*   the main font */
+    font-family: 'Abel', sans-serif;
+opacity: .95;
+/* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+background-image: linear-gradient(to top, #97d9e1 0%, #82AAE3 100%);
+}
+
+
+/* End body rules */
+
+.card{
+  max-width: 430px;
+    border-radius: 5px;
+    margin: 2% auto;
+    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    padding: 20px 10px 30px 10px;
+    /* background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%); */
+    background-image: linear-gradient(-225deg, #91D8E4 50%, #BFEAF5 50%);
+    background-color: none;
+    background-clip: none;
+    border: none;
+}
+
+
+/* Start form  attributes */
+
+
+/* the header form form */
+header {
+    margin: 2% auto 10% auto;
+    text-align: center;
+}
+/* Login title form form */
+header h2 {
+    font-size: 250%;
+    font-family: 'Playfair Display', serif;
+    color: #3e403f;
+}
+/*  A welcome message or an explanation of the login form */
+header p {letter-spacing: 0.08em;}
+
+
+
+/* //////////////////////////////////////////// */
+/* //////////////////////////////////////////// */
+
+.input-group{
+  background: #fff;
+  border-radius: 5px 5px 5px 5px;
+  padding: 2px;
+}
+
+.form-control{
+  border: none;
+  color: #5E6472;
+  transition: 0.2s linear;
+}
+
+.form-control:focus{
+  border-color: none;
+  box-shadow: none;
+}
+
+.form-group{
+  background: #fff;
+  border-radius: 5px 5px 5px 5px;
+  padding: 2px;
+}
+
+.input-item {
+    /* background: #fff; */
+    color: #333;
+    padding: 14px 15px 15px 9px;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 14px;
+}
+
+.input-group-text{
+  background: none;
+  border: none;
+}
+
+.other{
+  display: flex;
+  max-width: 250px;
+  margin: auto;
+}
+
+#pwd{
+  height: auto;
+}
+
+/* Show/hide password Font Icon */
+#eye {
+    /* background: #fff; */
+    color: #333;
+  
+    margin: 5.9px 0 0 0;
+    margin-left: -20px;
+    padding-bottom: 3px;
+    border-radius: 0px 5px 5px 0px;
+  
+    float: right;
+    position: relative;
+    right: 1%;
+    top: -.2%;
+    z-index: 5;
+    
+    cursor: pointer;
+}
+/* inputs form  */
+input[class="form-input"]{
+    /* width: 240px;
+    height: 50px; */
+  
+    /* margin-top: 2%; */
+    padding: 15px;
+    
+    font-size: 16px;
+    font-family: 'Abel', sans-serif;
+    color: #5E6472;
+  
+    outline: none;
+    border: none;
+  
+    border-radius: 0px 5px 5px 0px;
+    transition: 0.2s linear;
+    
+}
+input[id="txt-input"] {
+  width: 250px;
+  height: auto;
+}
+/* focus  */
+input:focus {
+    transform: translateX(-2px);
+    border-radius: 5px;
+}
+
+/* //////////////////////////////////////////// */
+/* //////////////////////////////////////////// */
+
+/* input[type="text"] {min-width: 250px;} */
+/* buttons  */
+button {
+    display: inline-block;
+    color: #252537;
+  
+    width: 100%;
+    height: 50px;
+  
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 5px;
+    
+    outline: none;
+    border: none;
+  
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s linear;
+    
+    margin: 7% auto;
+    letter-spacing: 0.08em;
+}
+/* Submits */
+.submits {
+    width: 48%;
+    display: inline-block;
+    float: left;
+    margin-left: 2%;
+}
+
+.close{
+  width: auto;
+  margin: auto;
+}
+
+/*       Forgot Password button FAF3DD  */
+.frgt-pass {
+  background: transparent;
+  height: 50px;
+  margin: 3% auto;
+  margin-left: auto;
+  margin-left: auto;
+  letter-spacing: 0.08em;
+}
+
+/*     Sign Up button  */
+.sign-up {
+  background: #91D8E4;
+  height: 48px;
+  margin: 5% auto;
+  margin-left: auto;
+  margin-left: auto;
+  letter-spacing: 0.08em;
+  padding-block: 10px;
+}
+
+
+/* buttons hover */
+button:hover, a:hover {
+    transform: translatey(3px);
+    box-shadow: none;
+}
+
+/* buttons hover Animation */
+button:hover, a:hover {
+    animation: ani9 0.4s ease-in-out infinite alternate;
+}
+@keyframes ani9 {
+    0% {
+        transform: translateY(3px);
+    }
+    100% {
+        transform: translateY(5px);
+    }
+}
