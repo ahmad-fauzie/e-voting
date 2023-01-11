@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-6">
                     <nav aria-label="breadcrumb" class='breadcrumb-header text-right'>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Siswa</li>
                         </ol>
                     </nav>
@@ -29,17 +29,25 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card border-0 shadow rounded mt-3 mb-5">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h3 class="text-secondary">Daftar Siswa</h3>
-                            <div class="d-flex justify-content-center align-items-center nav-button" style="gap: 3px;">
-                                <button class="btn btn-secondary p-2">
-                                    <a href="#" class="text-white deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
-                                </button>
-                                <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
-                                    data-bs-target="#addSiswaModal"><i class="bi-plus-circle me-2"></i>Tambah Siswa</button>
-                                <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
-                                    data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet"></i> Import
-                                    File</button>
+                        <div class="card-header">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="col-md-6">
+                                    <h3 class="text-secondary">Daftar Siswa</h3>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end align-items-center nav-button"
+                                    style="gap: 3px;">
+                                    <button class="btn btn-secondary p-2">
+                                        <a href="#" class="text-white deleteAll"><i class="bi-trash"></i> Hapus
+                                            Semua</a>
+                                    </button>
+                                    <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
+                                        data-bs-target="#addSiswaModal"><i class="bi-plus-circle me-2"></i>Tambah
+                                        Siswa</button>
+                                    <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
+                                        data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet"></i>
+                                        Import
+                                        File</button>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body" id="show_all_siswa">

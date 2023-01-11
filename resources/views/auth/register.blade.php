@@ -18,7 +18,7 @@
         <div class="card px-md-5">
             <header class="head-form">
                 <h2>Daftar</h2>
-                <p>Daftar disini dengan email dan nis sekolah</p>
+                <p>Daftar disini menggunakan email dan nis sekolah</p>
             </header>
             <br>
 

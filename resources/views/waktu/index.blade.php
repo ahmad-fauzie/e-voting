@@ -12,7 +12,19 @@
 @section('content')
     <div class="main-content container-fluid">
         <div class="page-title">
-            <h3>Jadwal Voting</h3>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h3>Jadwal Voting</h3>
+                </div>
+                <div class="col-12 col-md-6">
+                    <nav aria-label="breadcrumb" class='breadcrumb-header text-right'>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Jadwal Voting</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
         <section class="section">
             <div class="row">

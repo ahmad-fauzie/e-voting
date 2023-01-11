@@ -13,9 +13,18 @@
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.svg') }}" type="image/x-icon">
+    {{-- <link rel="stylesheet" href="https://feathersjs.com/feathers-chat.css" /> --}}
 
     @yield('style')
 </head>
+<style>
+    body {
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-image: linear-gradient(to top, #97d9e1 0%, #82AAE3 100%);
+        opacity: .95;
+    }
+</style>
 
 <body>
     <div id="app">
@@ -29,6 +38,7 @@
 
 
         <script src="https://unpkg.com/feather-icons"></script>
+        {{-- <script src="//unpkg.com/@feathersjs/client@^5.0.0-pre.34/dist/feathers.js"></script> --}}
         <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
 

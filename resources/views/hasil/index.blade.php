@@ -11,25 +11,42 @@
 @section('content')
     <div class="main-content container-fluid">
         <div class="page-title">
-            <h3>Hasil</h3>
-            {{-- <p class="text-subtitle text-muted">A good dashboard to display your statistics</p> --}}
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h3>Hasil</h3>
+                </div>
+                <div class="col-12 col-md-6">
+                    <nav aria-label="breadcrumb" class='breadcrumb-header text-right'>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Hasil</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
         <section class="section">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card border-0 shadow rounded mt-3 mb-5">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h3 class="text-secondary">Hasil Voting</h3>
-                            <div class="text-dark">
-                                <span class="fw-bold" id="start-end">Waktu Mulai : </span>
-                                <span class="fw-bold" id="cd-days">00</span> Hari
-                                <span class="fw-bold" id="cd-hours">00</span> Jam
-                                <span class="fw-bold" id="cd-minutes">00</span> Menit
-                                <span class="fw-bold" id="cd-seconds">00</span> Detik
+                        <div class="card-header">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="col-md-6">
+                                    <h3 class="text-secondary">Hasil Voting</h3>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                                    <div class="text-dark">
+                                        <span class="fw-bold" id="start-end">Waktu Mulai : </span>
+                                        <span class="fw-bold" id="cd-days">00</span> Hari
+                                        <span class="fw-bold" id="cd-hours">00</span> Jam
+                                        <span class="fw-bold" id="cd-minutes">00</span> Menit
+                                        <span class="fw-bold" id="cd-seconds">00</span> Detik
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body" id="show_all_hasil">
-                            <div id="container" style="max-width: 100%; height: 500px; margin: 0 auto;"></div>
+                            <div id="container" style="max-width: 100%; height: 500px; margin: 0 auto; display: flex; justify-content: center; align-item: center;"></div>
                             @if (Auth::check() && Auth::user()->level === 'admin')
                                 <div id="container-button" style="margin: 0 auto; text-align: center; margin-top: 10px;">
                                 </div>
