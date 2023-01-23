@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('nis');
             $table->string('kelas');
             $table->string('jurusan');
-            $table->string('visi');
-            $table->string('misi');
+            $table->longText('visi');
+            $table->longText('misi');
             $table->string('foto');
             $table->timestamps();
         });

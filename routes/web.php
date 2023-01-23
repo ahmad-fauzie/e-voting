@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\SiswaController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\VotingController;
 use App\Http\Controllers\HasilController;
 use App\Http\Controllers\WaktuController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ChatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,11 @@ Route::get('/daftar', [AuthController::class, 'register'])->name('register');
 Route::post('/proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/sidebar', [AuthController::class, 'sidebar'])->name('sidebar');
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('/hasil', [HasilController::class, 'index'])->name('hasil.index');
 Route::get('/hasil/fetchall', [HasilController::class, 'fetchAll'])->name('hasil.fetchAll');
@@ -59,7 +66,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/waktu/delete', [WaktuController::class, 'delete'])->name('waktu.delete');
         
         Route::post('/hasil/export', [HasilController::class, 'export'])->name('hasil.export');
-
     });
 
     Route::group(['middleware' => ['cek_login:siswa']], function () {
@@ -67,8 +73,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/voting', [VotingController::class, 'index'])->name('voting.index');
         Route::post('/voting/store', [VotingController::class, 'store'])->name('voting.store');
         Route::get('/voting/info', [VotingController::class, 'info'])->name('voting.info');
-
-        
     });
 
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
@@ -77,4 +81,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/setting/updatepassword', [SettingController::class, 'updatePassword'])->name('setting.updatePassword');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::get('/qna', [ChatsController::class, 'showKandidat'])->name('qna.index');
+    Route::get('/chat/{id}', [ChatsController::class, 'index'])->name('chat');
+    Route::get('/messages', [ChatsController::class, 'fetchMessages']);
+    Route::post('/messages', [ChatsController::class, 'sendMessage']);
+    Route::post('/deleteMessages', [ChatsController::class, 'deleteMessage']);
+    Route::post('/deleteMessagesGroup', [ChatsController::class, 'deleteMessageGroup']);
+    Route::delete('/deleteMessagesAll', [ChatsController::class, 'deleteMessageAll'])->name('messages.deleteAll');
 });

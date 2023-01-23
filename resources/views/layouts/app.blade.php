@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>@yield('title')</title>
 
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.svg') }}" type="image/x-icon">
-    {{-- <link rel="stylesheet" href="https://feathersjs.com/feathers-chat.css" /> --}}
-
+    
+    <script type="application/javascript" src="https://unpkg.com/feather-icons"></script>
     @yield('style')
 </head>
 <style>
@@ -24,7 +23,7 @@
         background-image: linear-gradient(to top, #97d9e1 0%, #82AAE3 100%);
         opacity: .95;
     }
-</style>
+    </style>
 
 <body>
     <div id="app">
@@ -36,15 +35,13 @@
             @include('layouts.footer')
         </div>
 
-
-        <script src="https://unpkg.com/feather-icons"></script>
-        {{-- <script src="//unpkg.com/@feathersjs/client@^5.0.0-pre.34/dist/feathers.js"></script> --}}
-        <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-
-        <script src="{{ asset('js/main.js') }}"></script>
-        @yield('script')
+        
     </div>
 </body>
+<script type="application/javascript">feather.replace()</script>
+<script type="application/javascript" src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script type="application/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+@yield('script')
 
 </html>

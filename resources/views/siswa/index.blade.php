@@ -3,7 +3,6 @@
 @section('title', 'Daftar Siswa')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 @endsection
@@ -31,22 +30,18 @@
                     <div class="card border-0 shadow rounded mt-3 mb-5">
                         <div class="card-header">
                             <div class="row d-flex justify-content-between align-items-center">
-                                <div class="col-md-6">
+                                <div class="col-lg-5 col-md-6">
                                     <h3 class="text-secondary">Daftar Siswa</h3>
                                 </div>
-                                <div class="col-md-6 d-flex justify-content-end align-items-center nav-button"
+                                <div class="col-lg-7 col-md-6 d-flex justify-content-end align-items-center nav-button"
                                     style="gap: 3px;">
                                     <button class="btn btn-secondary p-2">
-                                        <a href="#" class="text-white deleteAll"><i class="bi-trash"></i> Hapus
-                                            Semua</a>
+                                        <a href="#" class="text-white deleteAll"><i class="bi-trash"></i><div style="display: contents;" id="icon"> Hapus Semua</div></a>
                                     </button>
                                     <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
-                                        data-bs-target="#addSiswaModal"><i class="bi-plus-circle me-2"></i>Tambah
-                                        Siswa</button>
+                                        data-bs-target="#addSiswaModal"><i class="bi-plus-circle"></i><div style="display: contents;" id="icon"> Tambah Siswa</div></button>
                                     <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
-                                        data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet"></i>
-                                        Import
-                                        File</button>
+                                        data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet"></i><div style="display: contents;" id="icon"> Import File</div></button>
                                 </div>
                             </div>
                         </div>
@@ -191,12 +186,33 @@
 
 @section('script')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
     <script src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $(function() {
+            var e = window.innerWidth;
+            if(e < 915){
+                var buttons = document.querySelectorAll('[id=icon]');
+                buttons.forEach(function(button) {
+                    button.style.display = "none";
+                });
+            }
+
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
 
             // get export template ajax request
             $(document).on('click', '#download_excel', function(e) {
@@ -221,11 +237,10 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Siswa Berhasil Ditambahkan!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title:  'Siswa Berhasil Ditambahkan!',
+                                icon: 'success'
+                            });
                             fetchAllSiswa();
                         }
                         $("#import_siswa_btn").text('Simpan');
@@ -250,11 +265,12 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Siswa Berhasil Ditambahkan!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title: 'Siswa Berhasil Ditambahkan!',
+                                icon: 'success'
+                            });
+                            $("#add_siswa_form")[0].reset();
+                            $("#addSiswaModal").modal('hide');
                         } else {
                             Swal.fire(
                                 'Gagal!',
@@ -264,8 +280,6 @@
                         }
                         fetchAllSiswa();
                         $("#add_siswa_btn").text('Simpan');
-                        $("#add_siswa_form")[0].reset();
-                        $("#addSiswaModal").modal('hide');
                     }
                 });
             });
@@ -316,11 +330,12 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Siswa Berhasil Diubah!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title: 'Siswa Berhasil Diubah!',
+                                icon: 'success'
+                            });
+                            $("#edit_siswa_form")[0].reset();
+                            $("#editSiswaModal").modal('hide');
                         } else {
                             Swal.fire(
                                 'Gagal!',
@@ -330,8 +345,6 @@
                         }
                         fetchAllSiswa();
                         $("#edit_siswa_btn").text('Simpan');
-                        $("#edit_siswa_form")[0].reset();
-                        $("#editSiswaModal").modal('hide');
                     }
                 });
             });
@@ -359,12 +372,10 @@
                                 _token: csrf
                             },
                             success: function(response) {
-                                console.log(response);
-                                Swal.fire(
-                                    'Berhasil!',
-                                    'Data Berhasil Dihapus.',
-                                    'success'
-                                )
+                                toastMixin.fire({
+                                    title: 'Data Berhasil Dihapus.',
+                                    icon: 'success'
+                                });
                                 fetchAllSiswa();
                             }
                         });
@@ -393,12 +404,10 @@
                                 _token: csrf
                             },
                             success: function(response) {
-                                console.log(response);
-                                Swal.fire(
-                                    'Berhasil!',
-                                    'Data Berhasil Dihapus.',
-                                    'success'
-                                )
+                                toastMixin.fire({
+                                    title: 'Data Berhasil Dihapus.',
+                                    icon: 'success'
+                                });
                                 fetchAllSiswa();
                             }
                         });

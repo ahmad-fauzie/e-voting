@@ -3,7 +3,6 @@
 @section('title', 'Daftar Kandidat')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
 @endsection
@@ -36,10 +35,10 @@
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center" style="gap: 3px;">
                                     <button class="btn btn-secondary p-2">
-                                        <a href="#" class="text-white deleteAll"><i class="bi-trash"></i> Hapus Semua</a>
+                                        <a href="#" class="text-white deleteAll"><i class="bi-trash"></i><div style="display: contents;" id="icon"> Hapus Semua</div></a>
                                     </button>
                                     <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
-                                        data-bs-target="#addKandidatModal"><i class="bi bi-plus-circle"></i> Tambah Kandidat</button>
+                                        data-bs-target="#addKandidatModal"><i class="bi bi-plus-circle"></i><div style="display: contents;" id="icon"> Tambah Kandidat</div></button>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +115,6 @@
                                     <i class="bx bx-x d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Close</span>
                                 </button>
-                                {{-- <button type="submit" id="add_kandidat_btn" class="btn btn-primary">Simpan</button> --}}
                                 <button type="submit" class="btn btn-primary ml-1" id="add_kandidat_btn" data-bs-dismiss="modal">
                                     <i class="bx bx-check d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Simpan</span>
@@ -198,7 +196,6 @@
                                     <i class="bx bx-x d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Close</span>
                                 </button>
-                                {{-- <button type="submit" id="edit_kandidat_btn" class="btn btn-success">Ubah</button> --}}
                                 <button type="submit" class="btn btn-primary ml-1" id="edit_kandidat_btn" data-bs-dismiss="modal">
                                     <i class="bx bx-check d-block d-sm-none"></i>
                                     <span class="d-none d-sm-block">Simpan</span>
@@ -214,12 +211,33 @@
 
 @section('script')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
     <script src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $(function() {
+            var e = window.innerWidth;
+            if(e < 768){
+                var buttons = document.querySelectorAll('[id=icon]');
+                buttons.forEach(function(button) {
+                    button.style.display = "none";
+                });
+            }
+
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
 
             // add new kandidat ajax request
             $("#add_kandidat_form").submit(function(e) {
@@ -236,11 +254,12 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Kandidat Berhasil Ditambahkan!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title: 'Kandidat Berhasil Ditambahkan!',
+                                icon: 'success'
+                            });
+                            $("#add_kandidat_form")[0].reset();
+                            $("#addKandidatModal").modal('hide');
                         } else {
                             Swal.fire(
                                 'Gagal!',
@@ -250,8 +269,6 @@
                         }
                         fetchAllKandidat();
                         $("#add_kandidat_btn").text('Simpan');
-                        $("#add_kandidat_form")[0].reset();
-                        $("#addKandidatModal").modal('hide');
                     }
                 });
             });
@@ -299,11 +316,12 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Kandidat Berhasil Diubah!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title: 'Kandidat Berhasil Diubah!',
+                                icon: 'success'
+                            });
+                            $("#edit_kandidat_form")[0].reset();
+                            $("#editKandidatModal").modal('hide');
                         } else {
                             Swal.fire(
                                 'Gagal!',
@@ -313,8 +331,6 @@
                         }
                         fetchAllKandidat();
                         $("#edit_kandidat_btn").text('Simpan');
-                        $("#edit_kandidat_form")[0].reset();
-                        $("#editKandidatModal").modal('hide');
                     }
                 });
             });
@@ -342,12 +358,10 @@
                                 _token: csrf
                             },
                             success: function(response) {
-                                console.log(response);
-                                Swal.fire(
-                                    'Berhasil!',
-                                    'Data Berhasil Dihapus.',
-                                    'success'
-                                )
+                                toastMixin.fire({
+                                    title: 'Data Berhasil Dihapus.',
+                                    icon: 'success'
+                                });
                                 fetchAllKandidat();
                             }
                         });
@@ -376,12 +390,10 @@
                                 _token: csrf
                             },
                             success: function(response) {
-                                console.log(response);
-                                Swal.fire(
-                                    'Berhasil!',
-                                    'Data Berhasil Dihapus.',
-                                    'success'
-                                )
+                                toastMixin.fire({
+                                    title: 'Data Berhasil Dihapus.',
+                                    icon: 'success'
+                                });
                                 fetchAllKandidat();
                             }
                         });

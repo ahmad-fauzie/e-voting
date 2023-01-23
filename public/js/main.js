@@ -31,17 +31,9 @@
         var c = document.querySelector(".sidebar-wrapper");
         new PerfectScrollbar(c);
     }
-    // (window.onload = function () {
-    //     var e = window.innerWidth;
-    //     e < 768 &&
-    //         (console.log("widthnya ", e),
-    //         document.getElementById("sidebar").classList.remove("active"));
-    // }),
-    //     feather.replace();
+    
     window.addEventListener("load", function() {
         var e = window.innerWidth;
-        // console.log(e);
         e < 768 && (document.getElementById("sidebar").classList.remove("active"));
-        feather.replace();
     });
 })();

@@ -11,17 +11,14 @@
 
 /* Start body rules */
 body {
-    /* background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); */
-/* background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); */
-background-attachment: fixed;
+  background-attachment: fixed;
   background-repeat: no-repeat;
 
     font-family: 'Vibur', cursive;
 /*   the main font */
     font-family: 'Abel', sans-serif;
-opacity: .95;
-/* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
-background-image: linear-gradient(to top, #97d9e1 0%, #82AAE3 100%);
+  opacity: .95;
+  background-image: linear-gradient(to top, #97d9e1 0%, #82AAE3 100%);
 }
 
 
@@ -33,7 +30,6 @@ background-image: linear-gradient(to top, #97d9e1 0%, #82AAE3 100%);
     margin: 2% auto;
     box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
     padding: 20px 10px 30px 10px;
-    /* background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%); */
     background-image: linear-gradient(-225deg, #91D8E4 50%, #BFEAF5 50%);
     background-color: none;
     background-clip: none;
@@ -59,10 +55,6 @@ header h2 {
 header p {letter-spacing: 0.08em;}
 
 
-
-/* //////////////////////////////////////////// */
-/* //////////////////////////////////////////// */
-
 .input-group{
   background: #fff;
   border-radius: 5px 5px 5px 5px;
@@ -87,7 +79,6 @@ header p {letter-spacing: 0.08em;}
 }
 
 .input-item {
-    /* background: #fff; */
     color: #333;
     padding: 14px 15px 15px 9px;
     border-radius: 5px 0px 0px 5px;
@@ -111,7 +102,6 @@ header p {letter-spacing: 0.08em;}
 
 /* Show/hide password Font Icon */
 #eye {
-    /* background: #fff; */
     color: #333;
   
     margin: 5.9px 0 0 0;
@@ -129,10 +119,6 @@ header p {letter-spacing: 0.08em;}
 }
 /* inputs form  */
 input[class="form-input"]{
-    /* width: 240px;
-    height: 50px; */
-  
-    /* margin-top: 2%; */
     padding: 15px;
     
     font-size: 16px;
@@ -156,8 +142,6 @@ input:focus {
     border-radius: 5px;
 }
 
-/* //////////////////////////////////////////// */
-/* //////////////////////////////////////////// */
 
 /* input[type="text"] {min-width: 250px;} */
 /* buttons  */
@@ -227,6 +211,7 @@ button:hover, a:hover {
 button:hover, a:hover {
     animation: ani9 0.4s ease-in-out infinite alternate;
 }
+
 @keyframes ani9 {
     0% {
         transform: translateY(3px);

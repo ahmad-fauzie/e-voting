@@ -9,7 +9,6 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/style-login.css') }}">
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script> --}}
     <script src="https://kit.fontawesome.com/e3dfa6f57a.js" crossorigin="anonymous"></script>
 </head>
 
