@@ -13,12 +13,12 @@
 body {
   background-attachment: fixed;
   background-repeat: no-repeat;
-
-    font-family: 'Vibur', cursive;
-/*   the main font */
-    font-family: 'Abel', sans-serif;
-  opacity: .95;
   background-image: linear-gradient(to top, #97d9e1 0%, #82AAE3 100%);
+  opacity: .95;
+
+  font-family: 'Vibur', cursive;
+/*   the main font */
+  font-family: 'Abel', sans-serif;
 }
 
 
