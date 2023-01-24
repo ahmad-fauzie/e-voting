@@ -5,9 +5,18 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
+                @if(Auth::guest())
+                <li class="sidebar-item {{ request()->routeIs('login.*') ? 'active' : '' }}">
+                    <a href="{{ route('login') }}" class="sidebar-link">
+                        <i data-feather="key" width="20"></i>
+                        <span>Login</span>
+                    </a>
+                </li>
+                @endif
+
                 @if(Auth::check())
                 <li class='sidebar-title'>Menu Utama</li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ request()->routeIs('dashboard.*') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.index') }}" class='sidebar-link'>
                         <i data-feather="home" width="20"></i>
                         <span>Dashboard</span>
@@ -41,6 +50,15 @@
                 </li>
                 @endif
 
+                @if(Auth::check())
+                <li class="sidebar-item {{ request()->routeIs('qna.*') ? 'active' : '' }}">
+                    <a href="{{ route('qna.index') }}" class="sidebar-link">
+                        <i data-feather="message-square" width="20"></i>
+                        <span>QnA</span>
+                    </a>
+                </li>
+                @endif
+
                 <li class="sidebar-item {{ request()->routeIs('hasil.*') ? 'active' : '' }}">
                     <a href="{{ route('hasil.index') }}" class="sidebar-link">
                         <i data-feather="pie-chart" width="20"></i>
@@ -48,16 +66,16 @@
                     </a>
                 </li>
 
-                @if(Auth::check())
+                
+                @if(Auth::check() && Auth::user()->level === 'admin')
                 <li class='sidebar-title'>Pengaturan</li>
-                @if(Auth::user()->level === 'admin')
                 <li class="sidebar-item {{ request()->routeIs('waktu.*') ? 'active' : '' }}">
                     <a href="{{ route('waktu.index') }}" class="sidebar-link">
                         <i data-feather="clock" width="20"></i>
                         <span>Jadwal Voting</span>
                     </a>
                 </li>
-                @endif
+                
                 <li class="sidebar-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
                     <a href="{{ route('setting.index') }}" class="sidebar-link">
                         <i data-feather="user" width="20"></i>

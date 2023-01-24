@@ -25,6 +25,7 @@ Silahkan login menggunakan akun admin:
 - Data master Siswa
 - Data Master Kandidat
 - Voting
+- QnA (Diskusi)
 - QuickCount
 - Setting Waktu
 - Profile

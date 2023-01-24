@@ -87,28 +87,34 @@ class VotingController extends Controller
         $kandidats = Kandidat::all();
 		$output = '';
 		if ($kandidats->count() > 0) {
+            $no = 0;
             foreach ($kandidats as $kandidat) {
-                $output .= '<div class="col-12 col-md-4 overflow-auto mx-md-auto" style="max-height: 100vh;">
+                $output .= '<div class="col-12 col-md-4 mx-md-auto">
                 <div class="card card-statistic">
-                    <div class="card-body p-0">
-                        <div class="text-center m-4">
+                    <div class="card-body p-0 overflow-auto">
+                        <div class="d-flex justify-content-center align-item-center text-center m-4" style="min-height: 150px;">
                             <img src="storage/kandidats/' . $kandidat->foto . '" alt="" width="150"
                                 class="rounded-circle">
                         </div>
                         <div class="divider">
                             <div class="divider-text bg-transparent px-2">
-                                <h3 class="card-title text-center m-0">' . $kandidat->name . '</h3>
+                                <h2 class="card-title text-center m-0">0' . ++$no . '</h2>
                             </div>
                         </div>
-                        <div class="card-right align-items-center p-3 pt-0 text-uppercase">
+                        <div class="text-white mb-3" style="text-align: center;">
+                            <h3 class="card-title text-center m-0 mb-4">' . $kandidat->name . '</h3>
+                            <i class="bi bi-chevron-double-down mb-4" id="visiMisiButton" onclick="visiMisiButton()" style="">Visi Misi</i>
+                        </div>
+                        <div class="card-right align-items-center p-3 pt-0 text-uppercase mt-3" id="visiMisi" style="">
                             <h5 class="text-white">Visi :</h5>
                             <p class="text-capitalize fs-6">' . $kandidat->visi . '</p>
                             <h5 class="text-white mt-4">Misi :</h5>
                             <pre class="text-capitalize fs-6 text-white mb-0" style="white-space: pre-wrap; font-family: Raleway;">' . $kandidat->misi . '
                             </pre>
+                            <i class="bi bi-chevron-double-up mb-2 text-white" onclick="visiMisi()" style="display: grid; cursor: pointer; text-align:center;"></i>
                         </div>
                     </div>
-                    <div class="text-center mb-3">';
+                    <div class="card-footer text-center mb-0 py-3">';
                 if($hasil->contains('id_user', $user->id)){
                     $output .= '<a href="#" class="btn icon icon-left btn-danger"><i class="bi-exclamation-circle"></i> Anda Sudah Memilih</a>';
                 }else{

@@ -3,9 +3,7 @@
 @section('title', 'Hasil')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" /> --}}
 @endsection
 
 @section('content')
@@ -15,6 +13,7 @@
                 <div class="col-12 col-md-6">
                     <h3>Hasil</h3>
                 </div>
+                @if(Auth::check())
                 <div class="col-12 col-md-6">
                     <nav aria-label="breadcrumb" class='breadcrumb-header text-right'>
                         <ol class="breadcrumb">
@@ -23,6 +22,7 @@
                         </ol>
                     </nav>
                 </div>
+                @endif
             </div>
         </div>
         <section class="section">
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" id="show_all_hasil">
+                        <div class="card-body px-2 px-md-3" id="show_all_hasil">
                             <div id="container" style="max-width: 100%; height: 500px; margin: 0 auto; display: flex; justify-content: center; align-item: center;"></div>
                             @if (Auth::check() && Auth::user()->level === 'admin')
                                 <div id="container-button" style="margin: 0 auto; text-align: center; margin-top: 10px;">
@@ -87,7 +87,6 @@
                             timer(waktu[0].waktu_awal, waktu[0].waktu_akhir, response.data);
                             dataPoints = response.grup;
                             win = response.win;
-                            console.log(response.win);
                         } else if (response.waktu_count && response.jumlah == 0) {
                             $("#show_all_hasil").html(
                                 '<h1 class="text-center text-secondary my-5">Hasil Voting Belum Tersedia!</h1>'
@@ -97,7 +96,6 @@
                             $("#show_all_hasil").html(
                                 '<h1 class="text-center text-secondary my-5">Jadwal Voting Belum Ditentukan!</h1>'
                             );
-                            // console.log(response.win);
                         }
                     }
                 });
@@ -112,15 +110,11 @@
                         'Access-Control-Allow-Origin': '*',
                     },
                     success: function(response) {
-                        // console.log(response);
                         let now = Math.round(new Date(response.datetime).getTime() / 1000);
                         let start = Math.round(new Date(date_start).getTime() / 1000);
                         let end = Math.round(new Date(date_end).getTime() / 1000);
-                        // console.log(now);
-                        // console.log(start);
                         let timer, days, hours, minutes, seconds;
                         if (now >= start) {
-                            // chart(data);
                             $('#container').highcharts(chart(data));
                             $('#start-end').html('Waktu Berakhir : ');
                             $('#container-button').html(

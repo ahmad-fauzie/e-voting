@@ -30,21 +30,29 @@ class AuthController extends Controller
                 'password' => 'required',
             ]);
 
-        $kredensil = $request->only('email','password');
-
-            if (Auth::attempt($kredensil)) {
-                $user = Auth::user();
-                if ($user->level == 'admin') {
-                    return redirect()->intended('dashboard');
-                } elseif ($user->level == 'siswa') {
-                    return redirect()->intended('dashboard');
+            if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+                if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                    $user = Auth::user();
+                    if ($user->level == 'admin') {
+                        return redirect()->intended('dashboard');
+                    } elseif ($user->level == 'siswa') {
+                        return redirect()->intended('dashboard');
+                    }
+                    return redirect()->intended('/');
                 }
-                return redirect()->intended('/');
+            } else {
+                if (Auth::attempt(['nis' => $request->email, 'password' => $request->password])) {
+                    $user = Auth::user();
+                    if ($user->level == 'admin') {
+                        return redirect()->intended('dashboard');
+                    } elseif ($user->level == 'siswa') {
+                        return redirect()->intended('dashboard');
+                    }
+                    return redirect()->intended('/');
+                }
             }
 
-        return redirect('/')
-                                ->withInput()
-                                ->withErrors(['login_gagal' => 'Email Dan Password Salah!']);
+        return redirect('/')->withInput()->withErrors(['login_gagal' => 'Email Dan Password Salah!']);
     }
 
     public function register(){
@@ -68,7 +76,6 @@ class AuthController extends Controller
         ]);
         $kredensil = $request->only('nis', 'email');
 
-        // if(User::where('nis', $kredensil)->first() == null && Siswa::where('nis', $kredensil)->first() != null){
         if(!Auth::attempt($kredensil) && Siswa::where('nis', $request->nis)->first() != null && Siswa::where('email', $request->email)->first() != null){
             $data = $request->all();
             $check = $this->create($data);

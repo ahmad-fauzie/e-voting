@@ -19,4 +19,10 @@ class Kandidat extends Model
         'misi',
         'foto'
     ];
+
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

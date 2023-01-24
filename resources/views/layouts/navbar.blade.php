@@ -5,8 +5,8 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    @if(Auth::check())
-    
+
+    @if(Auth::check())    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
             {{-- <li class="dropdown nav-icon">
@@ -37,23 +37,46 @@
             <li class="dropdown">
                 <a href="#" data-bs-toggle="dropdown"
                     class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    @if(Auth::check() && Auth::user()->level === 'admin')
                     <div class="avatar me-1">
                         <img src="{{ asset('images/avatar.svg')}}" alt="" srcset="">
                     </div>
+                    @endif
+
+                    @if(Auth::check() && Auth::user()->level === 'siswa')
+                    <div class="avatar bg-warning me-1">
+                        <span class="avatar-content" id="initialName"></span>
+                    </div>
+                    @endif
                     <div class="d-none d-md-block d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}"><i data-feather="user"></i> Account</a>
-                    {{-- <a class="dropdown-item" href="#"><i data-feather="mail"></i>
-                        Messages</a> --}}
-                    @if(Auth::user()->level === 'admin')
-                    <a class="dropdown-item {{ request()->routeIs('waktu.*') ? 'active' : '' }}" href="{{ route('waktu.index') }}"><i data-feather="settings"></i> Settings</a>
-                    @endif
+                    @if(Auth::check() && Auth::user()->level === 'admin')
+                    <a class="dropdown-item {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}"><i data-feather="user"></i> Profile</a>
                     <div class="dropdown-divider"></div>
+                    @endif
                     <a class="dropdown-item" href="{{ route('logout') }}"><i data-feather="log-out"></i> Logout</a>
                 </div>
             </li>
         </ul>
     </div>
     @endif
+
 </nav>
+<script type="application/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+@if(Auth::check())
+<script type="application/javascript">
+$(function() {
+    var getInitial = function(name) {
+        let rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
+        let initials = [...name.matchAll(rgx)] || [];
+        initials = (
+        (initials.shift()?.[1] || '') + (initials.pop()?.[1] || '')
+        ).toUpperCase();
+        return initials;
+    };
+    var initial = getInitial({!! json_encode(Auth::user()->name) !!});
+    $('#initialName').html(initial);
+});
+</script>
+@endif

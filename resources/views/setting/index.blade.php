@@ -3,9 +3,7 @@
 @section('title', 'Setting')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" /> --}}
 @endsection
 @section('content')
     <div class="main-content container-fluid">
@@ -99,12 +97,25 @@
 @endsection
 @section('script')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    {{-- <script src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </script>
 
     <script>
         $(function() {
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
 
             // update setting ajax request
             $("#edit_user_form").submit(function(e) {
@@ -121,11 +132,10 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Data Berhasil Diubah!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title:  'Data Berhasil Diubah!',
+                                icon: 'success'
+                            });
                         } else {
                             Swal.fire(
                                 'Gagal!',
@@ -154,11 +164,10 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Password Berhasil Diubah!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title:  'Password Berhasil Diubah!',
+                                icon: 'success'
+                            });
                         } else {
                             Swal.fire(
                                 'Gagal!',
@@ -182,8 +191,6 @@
                     url: '{{ route('setting.fetchUser') }}',
                     method: 'get',
                     success: function(response) {
-                        console.log(response.user);
-                        console.log(response.password);
                         let user = response.user;
                         $('#user_id').val(user.id);
                         $('#name').val(user.name);

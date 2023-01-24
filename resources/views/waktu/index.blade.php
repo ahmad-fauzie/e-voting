@@ -3,11 +3,8 @@
 @section('title', 'Waktu')
 @section('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' /> --}}
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> --}}
-    {{-- href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"> --}}
 @endsection
 @section('content')
     <div class="main-content container-fluid">
@@ -33,7 +30,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="text-secondary">Waktu Pemilihan</h3>
                             <button class="btn btn-secondary text-white p-2" id="add_waktu" data-bs-toggle="modal"
-                                data-bs-target="#addWaktuModal"><i class="bi-clock me-2"></i>Setting Waktu</button>
+                                data-bs-target="#addWaktuModal"><i class="bi-clock"></i><div style="display: contents;" id="icon"> Setting Waktu</div></button>
                         </div>
                         <div class="card-body" id="show_all_waktu">
                             <h1 class="text-center text-secondary my-5">Loading...</h1>
@@ -125,13 +122,34 @@
 @endsection
 @section('script')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
     <script src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </script>
 
     <script>
         $(function() {
+            var e = window.innerWidth;
+            if(e < 768){
+                var buttons = document.querySelectorAll('[id=icon]');
+                buttons.forEach(function(button) {
+                    button.style.display = "none";
+                });
+            }
+
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
 
             // add new waktu ajax request
             $("#add_waktu_form").submit(function(e) {
@@ -148,11 +166,12 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Jadwal Berhasil Dibuat!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title:  'Jadwal Berhasil Dibuat!',
+                                icon: 'success'
+                            });
+                            $("#add_waktu_form")[0].reset();
+                            $("#addWaktuModal").modal('hide');
                             fetchAllWaktu();
                         } else {
                             Swal.fire(
@@ -162,8 +181,6 @@
                             )
                         }
                         $("#add_waktu_btn").text('Simpan');
-                        $("#add_waktu_form")[0].reset();
-                        $("#addWaktuModal").modal('hide');
                     }
                 });
             });
@@ -202,11 +219,12 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire(
-                                'Berhasil!',
-                                'Waktu Berhasil Diubah!',
-                                'success'
-                            )
+                            toastMixin.fire({
+                                title:  'Waktu Berhasil Diubah!',
+                                icon: 'success'
+                            });
+                            $("#edit_waktu_form")[0].reset();
+                            $("#editWaktuModal").modal('hide');
                             fetchAllWaktu();
                         } else {
                             Swal.fire(
@@ -216,8 +234,6 @@
                             )
                         }
                         $("#edit_waktu_btn").text('Simpan');
-                        $("#edit_waktu_form")[0].reset();
-                        $("#editWaktuModal").modal('hide');
                     }
                 });
             });
@@ -245,12 +261,10 @@
                                 _token: csrf
                             },
                             success: function(response) {
-                                console.log(response);
-                                Swal.fire(
-                                    'Berhasil!',
-                                    'Data Berhasil Dihapus.',
-                                    'success'
-                                )
+                                toastMixin.fire({
+                                    title:  'Data Berhasil Dihapus!',
+                                    icon: 'success'
+                                });
                                 fetchAllWaktu();
                             }
                         });
@@ -266,7 +280,6 @@
                     url: '{{ route('waktu.fetchAll') }}',
                     method: 'get',
                     success: function(response) {
-                        console.log(response.count);
                         if (response.count > 0) {
                             $('#add_waktu').attr('disabled', true);
                         } else {

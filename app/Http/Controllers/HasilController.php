@@ -70,7 +70,6 @@ class HasilController extends Controller
                 'waktu' => $waktu->isEmpty() ? 0 : $waktu,
                 'grup' => $grup,
                 'win' => $grup->first()['name'],
-                // 'array' => $array,
             ]);
         } 
         return response()->json([
@@ -78,11 +77,7 @@ class HasilController extends Controller
             'waktu_count' => !$waktu->isEmpty(),
             'waktu' => $waktu->isEmpty() ? 0 : $waktu,
             'jumlah' => $jumlah,
-            // 'array' => $array,
         ]);
-        
-
-        
     }
 
     /**
@@ -110,10 +105,8 @@ class HasilController extends Controller
             'notVote' => $notVote,
             'win' => $request->win,
         ];
-        // view()->share('gambar');
         $pdf = PDF::loadView('hasil.pdf', $data);
         $pdf->setPaper('A4', 'potrait');
-        // $pdf ->setPaper('a4','potrait');
         return $pdf->stream('hasil.pdf');
     }
 
