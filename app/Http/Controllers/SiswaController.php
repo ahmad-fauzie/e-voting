@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\User;
+use App\Models\Hasil;
 use App\Imports\SiswaImport;
 use App\Exports\SiswaExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -60,7 +61,6 @@ class SiswaController extends Controller
 		}
     return response()->json([
       'data' => $output,
-      'count' => $siswa->count()
     ]);
 	}
 
@@ -182,14 +182,23 @@ class SiswaController extends Controller
     }
 
     public function delete(Request $request) {
-      $id = $request->id;
-          Siswa::destroy($id);
-          return response()->json([
+      $siswa = Siswa::find($request->id);
+      $user = User::find($siswa->id_user);
+      $hasil = Hasil::where('id_user', $siswa->id_user)->first();
+      if($user != null){
+        User::destroy($user->id);
+      }
+      if($hasil != null){
+        Hasil::destroy($hasil->id);
+      }
+      Siswa::destroy($siswa->id);
+      return response()->json([
         'status' => 200,
       ]);
     }
 
     public function deleteAll(Request $request) {
+      User::where('level', 'siswa')->delete();
       Siswa::truncate();
       return response()->json([
         'status' => 200,

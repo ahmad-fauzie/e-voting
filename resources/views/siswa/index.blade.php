@@ -372,10 +372,18 @@
                                 _token: csrf
                             },
                             success: function(response) {
-                                toastMixin.fire({
-                                    title: 'Data Berhasil Dihapus.',
-                                    icon: 'success'
-                                });
+                                console.log(response.status);
+                                if (response.status == 200){
+                                    toastMixin.fire({
+                                        title: 'Data Berhasil Dihapus.',
+                                        icon: 'success'
+                                    });
+                                } else{
+                                    toastMixin.fire({
+                                        title: 'Data Gagal Dihapus.',
+                                        icon: 'error'
+                                    });
+                                }
                                 fetchAllSiswa();
                             }
                         });
