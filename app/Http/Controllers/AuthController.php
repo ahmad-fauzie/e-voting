@@ -75,11 +75,10 @@ class AuthController extends Controller
             'password' => 'required|min:8',
         ]);
         $kredensil = $request->only('nis', 'email');
-        $siswaNis = Siswa::where('nis', $request->nis);
-        $siswaEmail = Siswa::where('email', $request->email);
         $siswa = Siswa::where(['nis' => $request->nis, 'email' => $request->email]);
+        $dataSiswa = $siswa->first();
 
-        if(!Auth::attempt($kredensil) && $siswa->first() != null && $request->email == $siswa->email && $request->nis == $siswa->nis){
+        if(!Auth::attempt($kredensil) && $siswa->first() != null && $request->email == $dataSiswa->email && $request->nis == $dataSiswa->nis){
             $data = $request->all();
             $check = $this->create($data);
             
