@@ -16,4 +16,8 @@ class Siswa extends Model
         'nis',
         'status'
     ];
+
+    public function hasil() {
+        return $this->hasOne(Hasil::class, 'id_user', 'id_user');
+    }
 }

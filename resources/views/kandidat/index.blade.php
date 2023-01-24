@@ -104,6 +104,19 @@
                                         <label for="misi" class="form-label">Misi</label>
                                         <textarea name="misi" name="misi" rows="10" class="form-control" placeholder="Masukkan Misi" required></textarea>
                                     </div>
+
+                                    @if(count($errors) > 0)
+                                        @foreach($errors->all() as $error)
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <span class="alert-inner-text">
+                                                {{ $errors }}</span>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @endforeach
+                                    @endif
+        
                                     <div class="col-md-12">
                                         <label for="foto" class="form-label">Foto</label>
                                         <input type="file" class="form-control" name="foto" row="10" required>
@@ -124,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="modal fade" id="editKandidatModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 data-bs-backdrop="static" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">

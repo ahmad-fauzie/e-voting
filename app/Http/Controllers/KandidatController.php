@@ -73,6 +73,9 @@ class KandidatController extends Controller
    */
   public function store(Request $request)
   {
+    $request->validate([
+      'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+    ]);
     $file = $request->file('foto');
     if(Kandidat::where('nis', $request->nis)->first() == null && Kandidat::where('email', $request->email)->first() == null){
       $fileName = time() . '.' . $file->getClientOriginalExtension();
@@ -144,7 +147,8 @@ class KandidatController extends Controller
   public function delete(Request $request) {
     $id = $request->id;
     $kandidat = Kandidat::find($id);
-    if (Storage::delete('public/kandidats/' . $kandidat->foto)) {
+    if ($kandidat->foto) {
+      Storage::delete('public/kandidats/' . $kandidat->foto);
       Kandidat::destroy($id);
     }
         return response()->json([

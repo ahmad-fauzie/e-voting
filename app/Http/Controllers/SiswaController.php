@@ -198,6 +198,14 @@ class SiswaController extends Controller
     }
 
     public function deleteAll(Request $request) {
+      $count = Hasil::whereIn('id_user', function($query) {
+        $query->select('id_user')->from('siswas');
+      })->count();
+      if ($count > 0) {
+        Hasil::whereIn('id_user', function($query) {
+          $query->select('id_user')->from('siswas');
+        })->delete();
+      }
       User::where('level', 'siswa')->delete();
       Siswa::truncate();
       return response()->json([

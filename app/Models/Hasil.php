@@ -13,4 +13,8 @@ class Hasil extends Model
         'id_user',
         'pesan'
     ];
+
+    public function siswas() {
+        return $this->belongsTo(Siswa::class, 'id_user', 'id_user');
+    }
 }
