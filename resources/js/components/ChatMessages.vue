@@ -30,7 +30,7 @@
               </div>
             </li>
           </ul>
-        <div class="input-group">
+        <div class="input-group" v-if="filterMessageId(user) <= 9">
           <input
             id="btn-input"
             type="text"
@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import { labeledStatement } from '@babel/types';
 
 export default {
   props: ["user", "messages", "kandidat"],
@@ -108,6 +107,15 @@ export default {
       return this.filterMessages.filter(message =>  {
         return message.group_id == group_id;
       })
+    },
+    filterMessageId(user){
+      if(user.level === 'siswa'){
+        let messages = this.filterMessages.filter(message => {
+          return message.user.id == user.id;
+        });
+        return messages.length;
+      }
+      return 0;
     },
     initial(name){
       let rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
