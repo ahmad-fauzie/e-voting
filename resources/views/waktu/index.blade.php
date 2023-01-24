@@ -176,7 +176,7 @@
                         } else {
                             Swal.fire(
                                 'Gagal',
-                                'Waktu Awal dan Waktu Akhir Tidak Boleh Sama!',
+                                'Waktu Awal Tidak Boleh Lebih Besar Atau Sama Dengan Waktu Akhir!',
                                 'error',
                             )
                         }
@@ -229,7 +229,7 @@
                         } else {
                             Swal.fire(
                                 'Gagal',
-                                'Waktu Awal dan Waktu Akhir Tidak Boleh Sama!',
+                                'Waktu Awal Tidak Boleh Lebih Besar Atau Sama Dengan Waktu Akhir!',
                                 'error',
                             )
                         }

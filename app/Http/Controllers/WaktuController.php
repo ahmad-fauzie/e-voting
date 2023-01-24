@@ -55,16 +55,17 @@ class WaktuController extends Controller
     }
 
     public function store(Request $request){
-      if($request->awal != $request->akhir){
-        $waktuData = ['waktu_awal' => $request->awal, 'waktu_akhir' => $request->akhir];
-        Waktu::create($waktuData);
+      if($request->awal >= $request->akhir){
         return response()->json([
-          'status' => 200,
+          'status' => 404,
         ]);
       }
+      $waktuData = ['waktu_awal' => $request->awal, 'waktu_akhir' => $request->akhir];
+      Waktu::create($waktuData);
       return response()->json([
-        'status' => 404,
+        'status' => 200,
       ]);
+      
     }
 
     public function edit(Request $request)
@@ -84,17 +85,17 @@ class WaktuController extends Controller
 
     public function update(Request $request)
     {
-      if($request->awal != $request->akhir){
-        $waktu = Waktu::find($request->waktu_id);
-        $waktuData = ['waktu_awal' => $request->awal, 'waktu_akhir' => $request->akhir];
-  
-        $waktu->update($waktuData);
+      if($request->awal >= $request->akhir){
         return response()->json([
-          'status' => 200,
+          'status' => 404,
         ]);
       }
+      $waktu = Waktu::find($request->waktu_id);
+      $waktuData = ['waktu_awal' => $request->awal, 'waktu_akhir' => $request->akhir];
+
+      $waktu->update($waktuData);
       return response()->json([
-        'status' => 404,
+        'status' => 200,
       ]);
     }
 

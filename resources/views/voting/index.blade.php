@@ -186,6 +186,9 @@
                 $.ajax({
                     url: 'http://worldtimeapi.org/api/timezone/Asia/Jakarta',
                     method: 'get',
+                    header: {
+                        'Access-Control-Allow-Origin': '*',
+                    },
                     success: function(response) {
                         let now = Math.round(new Date(response.datetime).getTime() / 1000);
                         let start = Math.round(new Date(date_start).getTime() / 1000);
