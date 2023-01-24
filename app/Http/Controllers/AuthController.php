@@ -75,16 +75,18 @@ class AuthController extends Controller
             'password' => 'required|min:8',
         ]);
         $kredensil = $request->only('nis', 'email');
+        $siswaNis = Siswa::where('nis', $request->nis);
+        $siswaEmail = Siswa::where('email', $request->email);
+        $siswa = Siswa::where(['nis' => $request->nis, 'email' => $request->email]);
 
-        if(!Auth::attempt($kredensil) && Siswa::where('nis', $request->nis)->first() != null && Siswa::where('email', $request->email)->first() != null){
+        if(!Auth::attempt($kredensil) && $siswa->first() != null && $request->email == $siswa->email && $request->nis == $siswa->nis){
             $data = $request->all();
             $check = $this->create($data);
             
-            $kredensil1 = $request->only('email','password');
-
+            $kredensil1 = ['nis' => $request->nis, 'email' => $request->email, 'password' => $request->password];
             if (Auth::attempt($kredensil1)) {
                 $user = Auth::user();
-                Siswa::where('nis', $kredensil)->update(['id_user' => $user->id]);
+                Siswa::where('nis', $request->nis)->update(['id_user' => $user->id]);
                 if ($user->level == 'admin') {
                     return redirect()->intended('dashboard');
                 } elseif ($user->level == 'siswa') {

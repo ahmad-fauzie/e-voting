@@ -83,8 +83,8 @@
                                         <div class="row">
                                             <div class="col-6 col-md-6">
                                                 <select name="kelas" class="form-select">
+                                                    <option value="10">10</option>
                                                     <option value="11">11</option>
-                                                    <option value="12">12</option>
                                                 </select>
                                             </div>
                                             <div class="col-6 col-md-6">
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="modal fade" id="editKandidatModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 data-bs-backdrop="static" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -161,8 +161,8 @@
                                         <div class="row">
                                             <div class="col-6 col-md-6">
                                                 <select name="kelas" id="kelas" class="form-select">
+                                                    <option value="10">10</option>
                                                     <option value="11">11</option>
-                                                    <option value="12">12</option>
                                                 </select>
                                             </div>
                                             <div class="col-6 col-md-6">
