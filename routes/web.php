@@ -11,6 +11,7 @@ use App\Http\Controllers\HasilController;
 use App\Http\Controllers\WaktuController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,10 +84,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::get('/qna', [ChatsController::class, 'showKandidat'])->name('qna.index');
-    Route::get('/chat/{id}', [ChatsController::class, 'index'])->name('chat');
+    Route::get('/chat/{id}', [ChatsController::class, 'index'])->name('qna.detail');
     Route::get('/messages', [ChatsController::class, 'fetchMessages']);
     Route::post('/messages', [ChatsController::class, 'sendMessage']);
     Route::post('/deleteMessages', [ChatsController::class, 'deleteMessage']);
     Route::post('/deleteMessagesGroup', [ChatsController::class, 'deleteMessageGroup']);
     Route::delete('/deleteMessagesAll', [ChatsController::class, 'deleteMessageAll'])->name('messages.deleteAll');
+    
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
 });

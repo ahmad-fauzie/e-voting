@@ -52,7 +52,7 @@
                                                 <div class="avatar avatar-lg me-3">
                                                     <img src="storage/kandidats/{{ $kandidat['foto'] }}" alt="" srcset="">
                                                 </div>
-                                            <button id="{{ $kandidat['id'] }}" class="btn chatKandidat h5 text-white m-0 px-3 py-0" style="background-color: #5BC0F8; border-radius: 50%;">
+                                            <button id="{{ $kandidat['id'] }}" class="btn btn-success chatKandidat h5 text-white m-0 px-3 py-0" style="border-radius: 50%; box-shadow: 0 2px 6px 0 rgba(0,0,0,.3);">
                                                 <i class="bi bi-chat-dots-fill"></i>
                                             </button>
                                         </div>

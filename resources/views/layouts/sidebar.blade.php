@@ -83,6 +83,12 @@
                     </a>
                 </li>
                 @endif
+                <li class="sidebar-item {{ request()->routeIs('feedback.*') ? 'active' : '' }}">
+                    <a href="{{ route('feedback.index') }}" class="sidebar-link">
+                        <i data-feather="thumbs-up" width="20"></i>
+                        <span>Feedback</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

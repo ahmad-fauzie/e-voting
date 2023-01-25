@@ -116,7 +116,7 @@ class VotingController extends Controller
                     </div>
                     <div class="card-footer text-center mb-0 py-3">';
                 if($hasil->contains('id_user', $user->id)){
-                    $output .= '<a href="#" class="btn icon icon-left btn-danger"><i class="bi-exclamation-circle"></i> Anda Sudah Memilih</a>';
+                    $output .= '<a href="#" class="btn icon icon-left btn-danger"><i class="bi-exclamation-circle"></i> Kamu Sudah Memilih</a>';
                 }else{
                     $output .='<a href="#" id="' . $kandidat->id . '" class="btn icon icon-left btn-primary voting"><i class="bi-pin-angle"></i> Pilih</a>';
                 }

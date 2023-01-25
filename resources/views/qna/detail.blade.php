@@ -42,7 +42,7 @@
                         </button>
                         @endif
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 bg-grey mb-3" style="padding-block: 1.5rem;">
                         <chat-messages v-on:messagesent="addMessage" v-on:messagedelete="deleteMessage" v-on:messagegroupdelete="deleteMessageGroup" :kandidat="{{ $id }}" :messages="messages" :user="{{ Auth::user() }}"></chat-messages>
                     </div>
                     <div class="card-footer p-3 p-md-4 pt-0 pt-md-0">

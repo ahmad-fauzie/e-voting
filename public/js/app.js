@@ -2364,8 +2364,10 @@ var render = function render() {
     }, [_c("div", {
       staticClass: "d-flex justify-content-between align-items-start mb-2",
       staticStyle: {
-        "background-color": "#D6E4E5",
-        "border-radius": "10px",
+        "border-radius": ".267rem",
+        "box-shadow": "0 2px 6px 0 rgba(0,0,0,.3)",
+        background: "#5a8dee",
+        color: "#fff",
         padding: "0.3rem 0.5rem 0 0.5rem"
       }
     }, [_c("div", [_c("div", {
@@ -2400,8 +2402,10 @@ var render = function render() {
         key: repMessage.id,
         staticClass: "d-flex justify-content-between align-items-start mb-2",
         staticStyle: {
-          "background-color": "#BFEAF5",
-          "border-radius": "10px",
+          "background-color": "#fafbfb",
+          "box-shadow": "0 2px 6px 0 rgba(0,0,0,.3)",
+          "border-radius": ".267rem",
+          color: "#525361",
           padding: "0.3rem 0.5rem 0 0.5rem"
         }
       }, [_c("div", {

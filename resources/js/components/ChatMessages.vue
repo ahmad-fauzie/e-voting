@@ -2,7 +2,7 @@
   <ul style="padding: 0px; list-style-type: none;">
     <li class="left clearfix" v-for="(message, index) in filteredGroup" :key="message.id">
       <div class="clearfix">
-        <div class="d-flex justify-content-between align-items-start mb-2" style="background-color: #D6E4E5; border-radius: 10px; padding: 0.3rem 0.5rem 0 0.5rem;">
+        <div class="d-flex justify-content-between align-items-start mb-2" style="border-radius: .267rem; box-shadow: 0 2px 6px 0 rgba(0,0,0,.3); background: #5a8dee; color: #fff; padding: 0.3rem 0.5rem 0 0.5rem;">
           <div>
             <div class="header">
               <strong>
@@ -18,7 +18,7 @@
           </div>
         </div>
           <ul style="list-style-type: none; padding-left: 1rem;">
-            <li class="d-flex justify-content-between align-items-start mb-2" v-for="(repMessage, indexx) in filterReply(message.group_id)" v-if="indexx != 0" :key="repMessage.id" style="background-color: #BFEAF5; border-radius: 10px; padding: 0.3rem 0.5rem 0 0.5rem;">
+            <li class="d-flex justify-content-between align-items-start mb-2" v-for="(repMessage, indexx) in filterReply(message.group_id)" v-if="indexx != 0" :key="repMessage.id" style="background-color: #fafbfb; box-shadow: 0 2px 6px 0 rgba(0,0,0,.3); border-radius: .267rem; color: #525361; padding: 0.3rem 0.5rem 0 0.5rem;">
               <div style="padding-right: 0.5rem;">
                 <div class="clearfix">
                   <strong>{{ repMessage.user.name }}</strong>

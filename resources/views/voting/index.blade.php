@@ -198,11 +198,11 @@
                             $('#start-end').html('Waktu Berakhir : ');
                             timer = end - now;
                         } else if (now < start) {
-                            $('.voting').attr('class', 'btn btn-sm btn-success voting-error');
+                            $('.voting').attr('class', 'btn btn-sm btn-primary voting-error');
                             timer = start - now;
                         } else {
                             $('#start-end').html('Waktu Berakhir : ');
-                            $('.voting').attr('class', 'btn btn-sm btn-success voting-error-end');
+                            $('.voting').attr('class', 'btn btn-sm btn-primary voting-error-end');
                             timer = start - now;
                         }
                         setInterval(function() {

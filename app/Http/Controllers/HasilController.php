@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use Carbon\Carbon;
+use DB;
 // use Excel;
 
 class HasilController extends Controller
@@ -54,14 +55,13 @@ class HasilController extends Controller
             });
 
             foreach ($group as $grup) {
-                $dataPoints[] = [
+                    $dataPoints[] = [
                     'name' => $grup['name'],
                     'y' => floatval($grup['total_usage'])
                 ];
             }
-
+            
             $grup = $group->sortBy('total_usage', SORT_REGULAR, true);
-            // $win = $grup->first()['name'];
             return response()->json([
                 'status' => 200,
                 'data' => count($dataPoints) == 0 ? 0 : $dataPoints,
