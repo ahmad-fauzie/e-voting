@@ -24,7 +24,8 @@ class ChatsController extends Controller
     public function index($id)
     {
         $messages = Message::all();
-        return view('qna.detail', ['id' => $id, 'messages' => $messages] );
+        $kandidats = Kandidat::where('id', $id)->first();
+        return view('qna.detail', ['id' => $id, 'kandidats' => $kandidats, 'messages' => $messages] );
     }
 
 

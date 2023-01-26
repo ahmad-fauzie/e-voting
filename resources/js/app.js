@@ -93,7 +93,9 @@ const app = new Vue({
         },
 
         deleteMessage(id) {
-            let index = this.messages.findIndex(x => x.id === id);
+            console.log(id.id);
+            console.log(this.messages);
+            let index = this.messages.findIndex(x => x.id === id.id);
             this.messages.splice(index, 1);
 
             axios.post('/deleteMessages', id).then(response => {

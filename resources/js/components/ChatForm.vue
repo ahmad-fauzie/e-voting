@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  props: ["user", "kandidat", "messages"],
+  props: ["user", "kandidats", "messages"],
 
   data() {
     return {
@@ -57,18 +57,19 @@ export default {
   computed: {
     filterMessages(){
       return this.messages.filter(message => {
-        return message.kandidat_id == this.kandidat
+        return message.kandidat_id == this.kandidats.id
       });
     },
   },
 
   methods: {
     sendMessage() {
+      console.log(this.last);
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,
         message: this.newMessage,
-        kandidat_id: this.kandidat,
+        kandidat_id: this.kandidats.id,
         group_id: this.filteredLastGroup(this.messages),
       });
       this.newMessage = "";
@@ -83,7 +84,7 @@ export default {
       return latestGroupId + 1;
     },
     filterMessageId(user){
-      if(user.level === 'siswa'){
+      if(user.level === 'siswa' && user.nis !== this.kandidats.nis){
         let messages = this.filterMessages.filter(message => {
           return message.user.id == user.id;
         });

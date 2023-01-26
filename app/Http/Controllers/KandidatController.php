@@ -77,6 +77,7 @@ class KandidatController extends Controller
     $request->validate([
       'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
     ]);
+
     $file = $request->file('foto');
     if(Kandidat::where('nis', $request->nis)->first() == null && Kandidat::where('email', $request->email)->first() == null){
       $fileName = time() . '.' . $file->getClientOriginalExtension();
@@ -165,7 +166,7 @@ class KandidatController extends Controller
         }
     }
     Kandidat::truncate();
-        return response()->json([
+    return response()->json([
       'status' => 200,
     ]);
   }

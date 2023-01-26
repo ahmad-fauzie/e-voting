@@ -76,8 +76,8 @@
                     </a>
                 </li>
                 
-                <li class="sidebar-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
-                    <a href="{{ route('setting.index') }}" class="sidebar-link">
+                <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                    <a href="{{ route('profile.index') }}" class="sidebar-link">
                         <i data-feather="user" width="20"></i>
                         <span>Profile</span>
                     </a>

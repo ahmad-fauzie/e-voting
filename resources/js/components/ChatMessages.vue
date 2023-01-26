@@ -56,7 +56,7 @@
 <script>
 
 export default {
-  props: ["user", "messages", "kandidat"],
+  props: ["user", "messages", "kandidats"],
   data() {
     return {
       replyMessage: {},
@@ -78,7 +78,8 @@ export default {
   computed: {
     filterMessages(){
       return this.messages.filter(message => {
-        return message.kandidat_id == this.kandidat
+        console.log(this.kandidats.id);
+        return message.kandidat_id == this.kandidats.id
       });
     },
     filteredGroup: function() {
@@ -94,13 +95,15 @@ export default {
   
   methods: {
     sendMessage(group_id, index) {
+      console.log(this.last);
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,
         message: this.replyMessage[index],
-        kandidat_id: this.kandidat,
+        kandidat_id: this.kandidats.id,
         group_id: group_id,
       });
+      console.log(this.messages);
       this.replyMessage[index] = "";
     },
     filterReply(group_id) {
@@ -109,7 +112,7 @@ export default {
       })
     },
     filterMessageId(user){
-      if(user.level === 'siswa'){
+      if(user.level === 'siswa' && user.nis !== this.kandidats.nis){
         let messages = this.filterMessages.filter(message => {
           return message.user.id == user.id;
         });
@@ -126,6 +129,7 @@ export default {
       return initials;
     },
     deleteMessage(message_id) {
+      console.log(message_id);
       this.$swal({
         title: 'Apakah Kamu Yakin?',
         text: "Kamu tidak bisa mengembalikan pesan ini!",

@@ -2066,7 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["user", "kandidat", "messages"],
+  props: ["user", "kandidats", "messages"],
   data: function data() {
     return {
       newMessage: "",
@@ -2087,17 +2087,18 @@ __webpack_require__.r(__webpack_exports__);
     filterMessages: function filterMessages() {
       var _this = this;
       return this.messages.filter(function (message) {
-        return message.kandidat_id == _this.kandidat;
+        return message.kandidat_id == _this.kandidats.id;
       });
     }
   },
   methods: {
     sendMessage: function sendMessage() {
+      console.log(this.last);
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,
         message: this.newMessage,
-        kandidat_id: this.kandidat,
+        kandidat_id: this.kandidats.id,
         group_id: this.filteredLastGroup(this.messages)
       });
       this.newMessage = "";
@@ -2112,7 +2113,7 @@ __webpack_require__.r(__webpack_exports__);
       return latestGroupId + 1;
     },
     filterMessageId: function filterMessageId(user) {
-      if (user.level === 'siswa') {
+      if (user.level === 'siswa' && user.nis !== this.kandidats.nis) {
         var messages = this.filterMessages.filter(function (message) {
           return message.user.id == user.id;
         });
@@ -2143,7 +2144,7 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["user", "messages", "kandidat"],
+  props: ["user", "messages", "kandidats"],
   data: function data() {
     return {
       replyMessage: {},
@@ -2164,7 +2165,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     filterMessages: function filterMessages() {
       var _this = this;
       return this.messages.filter(function (message) {
-        return message.kandidat_id == _this.kandidat;
+        console.log(_this.kandidats.id);
+        return message.kandidat_id == _this.kandidats.id;
       });
     },
     filteredGroup: function filteredGroup() {
@@ -2179,13 +2181,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     sendMessage: function sendMessage(group_id, index) {
+      console.log(this.last);
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,
         message: this.replyMessage[index],
-        kandidat_id: this.kandidat,
+        kandidat_id: this.kandidats.id,
         group_id: group_id
       });
+      console.log(this.messages);
       this.replyMessage[index] = "";
     },
     filterReply: function filterReply(group_id) {
@@ -2194,7 +2198,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
     },
     filterMessageId: function filterMessageId(user) {
-      if (user.level === 'siswa') {
+      if (user.level === 'siswa' && user.nis !== this.kandidats.nis) {
         var messages = this.filterMessages.filter(function (message) {
           return message.user.id == user.id;
         });
@@ -2211,6 +2215,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     deleteMessage: function deleteMessage(message_id) {
       var _this2 = this;
+      console.log(message_id);
       this.$swal({
         title: 'Apakah Kamu Yakin?',
         text: "Kamu tidak bisa mengembalikan pesan ini!",
@@ -57411,8 +57416,10 @@ var app = new Vue({
       });
     },
     deleteMessage: function deleteMessage(id) {
+      console.log(id.id);
+      console.log(this.messages);
       var index = this.messages.findIndex(function (x) {
-        return x.id === id;
+        return x.id === id.id;
       });
       this.messages.splice(index, 1);
       axios__WEBPACK_IMPORTED_MODULE_2___default().post('/deleteMessages', id).then(function (response) {

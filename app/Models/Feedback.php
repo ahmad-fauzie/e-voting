@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Feedback extends Model
 {
@@ -31,5 +32,10 @@ class Feedback extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function getDate($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }

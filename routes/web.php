@@ -9,9 +9,10 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\VotingController;
 use App\Http\Controllers\HasilController;
 use App\Http\Controllers\WaktuController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +68,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/waktu/delete', [WaktuController::class, 'delete'])->name('waktu.delete');
         
         Route::post('/hasil/export', [HasilController::class, 'export'])->name('hasil.export');
+
+        Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
+        Route::delete('/setting/deleteVoting', [SettingController::class, 'deleteVoting'])->name('setting.deleteVoting');
+        Route::delete('/setting/deleteAll', [SettingController::class, 'deleteAll'])->name('setting.deleteAll');
     });
 
     Route::group(['middleware' => ['cek_login:siswa']], function () {
@@ -76,10 +81,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/voting/info', [VotingController::class, 'info'])->name('voting.info');
     });
 
-    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
-    Route::get('/setting/fetchuser', [SettingController::class, 'fetchUser'])->name('setting.fetchUser');
-    Route::post('/setting/update', [SettingController::class, 'update'])->name('setting.update');
-    Route::post('/setting/updatepassword', [SettingController::class, 'updatePassword'])->name('setting.updatePassword');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/fetchuser', [ProfileController::class, 'fetchUser'])->name('profile.fetchUser');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/updatepassword', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 

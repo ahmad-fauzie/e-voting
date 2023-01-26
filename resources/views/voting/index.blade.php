@@ -156,7 +156,8 @@
                                     showCancelButton: true,
                                     confirmButtonColor: '#3085d6',
                                     cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Oke'
+                                    confirmButtonText: 'Oke',
+                                    cancelButtonText: 'Nanti',
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         window.location = 'feedback';

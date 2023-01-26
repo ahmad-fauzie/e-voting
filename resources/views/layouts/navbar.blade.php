@@ -52,7 +52,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     @if(Auth::check() && Auth::user()->level === 'admin')
-                    <a class="dropdown-item {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}"><i data-feather="user"></i> Profile</a>
+                    <a class="dropdown-item {{ request()->routeIs('profile.*') ? 'active' : '' }}" href="{{ route('profile.index') }}"><i data-feather="user"></i> Profile</a>
+                    <a class="dropdown-item {{ request()->routeIs('setting.*') ? 'active' : '' }}" href="{{ route('setting.index') }}"><i data-feather="settings"></i> Settings</a>
                     <div class="dropdown-divider"></div>
                     @endif
                     <a class="dropdown-item" href="{{ route('logout') }}"><i data-feather="log-out"></i> Logout</a>

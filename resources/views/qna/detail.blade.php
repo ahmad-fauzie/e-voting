@@ -38,16 +38,16 @@
                         <h3 class="text-secondary m-0">Pesan</h3>
                         @if(Auth::check() && Auth::user()->level === 'admin')
                         <button class="btn btn-danger p-2">
-                            <a href="#" class="text-white deleteAll d-flex" id="{{ $id }}"><i class="bi bi-trash d-block h-auto"></i>
+                            <a href="#" class="text-white deleteAll d-flex" id="{{ $kandidats->id }}"><i class="bi bi-trash d-block h-auto"></i>
                                 <span class="d-none d-md-block ps-1">Hapus Semua</span></a>
                         </button>
                         @endif
                     </div>
                     <div class="card-body pb-0 bg-grey mb-3" style="padding-block: 1.5rem;">
-                        <chat-messages v-on:messagesent="addMessage" v-on:messagedelete="deleteMessage" v-on:messagegroupdelete="deleteMessageGroup" :kandidat="{{ $id }}" :messages="messages" :user="{{ Auth::user() }}"></chat-messages>
+                        <chat-messages v-on:messagesent="addMessage" v-on:messagedelete="deleteMessage" v-on:messagegroupdelete="deleteMessageGroup" :kandidats="{{ $kandidats }}" :messages="messages" :user="{{ Auth::user() }}"></chat-messages>
                     </div>
                     <div class="card-footer p-3 p-md-4 pt-0 pt-md-0">
-                        <chat-form v-on:messagesent="addMessage" :kandidat="{{ $id }}" :messages="messages" :user="{{ Auth::user() }}"></chat-form>
+                        <chat-form v-on:messagesent="addMessage" :kandidats="{{ $kandidats }}" :messages="messages" :user="{{ Auth::user() }}"></chat-form>
                     </div>
                 </div>
             </div>
