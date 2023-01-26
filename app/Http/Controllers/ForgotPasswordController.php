@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Mail;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Str;
 

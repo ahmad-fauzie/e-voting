@@ -35,13 +35,15 @@
                                 </div>
                                 <div class="col-lg-7 col-md-6 d-flex justify-content-end align-items-center nav-button"
                                     style="gap: 3px;">
-                                    <button class="btn btn-secondary p-2">
-                                        <a href="#" class="text-white deleteAll"><i class="bi-trash"></i><div style="display: contents;" id="icon"> Hapus Semua</div></a>
+                                    <button class="btn btn-danger p-2">
+                                        <a href="#" class="text-white deleteAll d-flex"><i class="bi bi-trash d-block h-auto"></i>
+                                            <span class="d-none d-md-block ps-1">Hapus Semua</span></a>
                                     </button>
-                                    <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
-                                        data-bs-target="#addSiswaModal"><i class="bi-plus-circle"></i><div style="display: contents;" id="icon"> Tambah Siswa</div></button>
-                                    <button class="btn btn-secondary text-white p-2" data-bs-toggle="modal"
-                                        data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet"></i><div style="display: contents;" id="icon"> Import File</div></button>
+                                    <button class="btn btn-primary p-2 d-flex" data-bs-toggle="modal"
+                                        data-bs-target="#addSiswaModal"><i class="bi bi-plus-circle d-block h-auto"></i>
+                                        <span class="d-none d-md-block ps-1">Tambah Siswa</span></button>
+                                    <button class="btn btn-secondary p-2 d-flex" data-bs-toggle="modal"
+                                        data-bs-target="#importSiswaModal"><i class="bi-file-earmark-spreadsheet d-block h-auto"></i><span class="d-none d-md-block ps-1">Import File</span></button>
                                 </div>
                             </div>
                         </div>
@@ -75,13 +77,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
+                                    <span>Close</span>
                                 </button>
                                 <button type="submit" id="import_siswa_btn" class="btn btn-primary ml-1"
                                     data-bs-dismiss="modal">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Simpan</span>
+                                    <span>Simpan</span>
                                 </button>
                             </div>
                         </form>
@@ -120,13 +120,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
+                                    <span>Close</span>
                                 </button>
                                 <button type="submit" class="btn btn-primary ml-1" id="add_siswa_btn"
                                     data-bs-dismiss="modal">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Simpan</span>
+                                    <span>Simpan</span>
                                 </button>
                             </div>
                         </form>
@@ -166,13 +164,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
+                                    <span>Close</span>
                                 </button>
                                 <button type="submit" class="btn btn-primary ml-1" id="edit_siswa_btn"
                                     data-bs-dismiss="modal">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Simpan</span>
+                                    <span>Simpan</span>
                                 </button>
                             </div>
                         </form>
@@ -191,13 +187,6 @@
 
     <script>
         $(function() {
-            var e = window.innerWidth;
-            if(e < 915){
-                var buttons = document.querySelectorAll('[id=icon]');
-                buttons.forEach(function(button) {
-                    button.style.display = "none";
-                });
-            }
 
             var toastMixin = Swal.mixin({
                 toast: true,

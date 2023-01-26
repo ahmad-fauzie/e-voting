@@ -48,7 +48,7 @@
                         <span class="avatar-content" id="initialName"></span>
                     </div>
                     @endif
-                    <div class="d-none d-md-block d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
+                    <div class="d-none d-md-block d-lg-inline-block">Hai, {{ Auth::user()->name }}</div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     @if(Auth::check() && Auth::user()->level === 'admin')

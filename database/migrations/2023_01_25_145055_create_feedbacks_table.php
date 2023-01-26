@@ -27,6 +27,7 @@ class CreateFeedbacksTable extends Migration
             $table->string('hasil');
             $table->string('jadwal');
             $table->string('profile');
+            $table->string('rating');
             $table->text('feedback');
             $table->timestamps();
         });

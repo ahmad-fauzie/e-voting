@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Auth;
 // use Excel;
 
 class HasilController extends Controller

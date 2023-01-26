@@ -79,12 +79,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
+                                    <span>Close</span>
                                 </button>
                                 <button type="submit" class="btn btn-primary ml-1" id="edit_password_btn" data-bs-dismiss="modal">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Simpan</span>
+                                    <span>Simpan</span>
                                 </button>
                             </div>
                         </form>

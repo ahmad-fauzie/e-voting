@@ -30,10 +30,13 @@
                                                     class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column overflow-auto">
                                                     <div class="overlay-content">
                                                         <h4 class="card-title mb-50">Siswa</h4>
-                                                        <p class="card-text text-ellipsis mb-1">Vote : {{ $vote }}</p>
-                                                        <p class="card-text text-ellipsis mb-1">Belum Vote : {{ $notVote }}
+                                                        <p class="card-text text-ellipsis mb-0">Vote : {{ $vote }}
                                                         </p>
-                                                        <p class="card-text text-ellipsis mb-1">Keseluruhan : {{ $jumlah }}
+                                                        <p class="card-text text-ellipsis mb-0">Belum Vote :
+                                                            {{ $notVote }}
+                                                        </p>
+                                                        <p class="card-text text-ellipsis mb-0">Keseluruhan :
+                                                            {{ $jumlah }}
                                                         </p>
                                                     </div>
                                                     <div class="overlay-status">
@@ -80,7 +83,8 @@
                                                     </div>
                                                     <div class="overlay-status text-right">
                                                         {{-- <p class="mb-25"><small>Last updated 3 mins ago</small></p> --}}
-                                                        <a href="{{ route('kandidat.index') }}" class="btn btn-outline-white btn-sm">Lihat
+                                                        <a href="{{ route('kandidat.index') }}"
+                                                            class="btn btn-outline-white btn-sm">Lihat
                                                             Detail</a>
                                                     </div>
                                                 </div>
@@ -90,31 +94,43 @@
                                 @endif
 
                                 @if (Auth::check() && Auth::user()->level === 'siswa')
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="card" style="text-align: center;">
-                                        <div class="card-content">
-                                            <img class="card-img img-fluid" src="{{ asset('images/depan-smk-65.png') }}"
-                                                alt="Card image">
-                                            <div
-                                                class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column overflow-auto">
-                                                <div class="overlay-content">
-                                                    <h2 class="card-title mb-5 fs-2">Pemberitahuan</h2>
-                                                    <p class="card-text text-ellipsis fs-3">Lorem ipsum dolor sit amet,
-                                                        consectetur adipisicing elit. Sapiente facere vitae hic tempore
-                                                        dicta expedita veritatis, dolorum earum iure tempora perferendis
-                                                        repudiandae. Sunt alias numquam ducimus ea laborum aperiam harum.
-                                                    </p>
-                                                </div>
-                                                <div class="overlay-status">
-                                                    {{-- <p class="mb-25"><small>Last updated 3 mins ago</small></p> --}}
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <img class="card-img img-fluid" src="{{ asset('images/depan-smk-65.png') }}"
+                                                    alt="Card image">
+                                                <div
+                                                    class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column overflow-auto">
+                                                    <div class="overlay-content d-sm-none">
+                                                        <h2 class="card-title mb-2 fs-5">Hai {{ Auth::user()->name }}</h2>
+                                                        <p class="card-text text-ellipsis fs-6">
+                                                            Selamat Datang Di Aplikasi E-Voting Pemilihan Ketua OSIS SMK
+                                                            Negeri 65 Jakarta. Disini Kamu dapat memilih kandidat yang
+                                                            tersedia pada menu <strong><a class="text-white"
+                                                                    href="{{ route('voting.index') }}">Voting</a></strong>.
+                                                            Aplikasi ini juga
+                                                            menyediakan fitur <strong><a class="text-white"
+                                                                href="{{ route('qna.index') }}">Diskusi</a></strong> yang dapat kamu manfaatkan.
+                                                        </p>
+                                                    </div>
+                                                    <div class="overlay-content d-none d-sm-block">
+                                                        <h2 class="card-title mb-3 fs-2">Hai {{ Auth::user()->name }}</h2>
+                                                        <p class="card-text text-ellipsis fs-3">
+                                                            Selamat Datang Di Aplikasi E-Voting Pemilihan Ketua OSIS SMK
+                                                            Negeri 65 Jakarta. Disini Kamu dapat memilih kandidat yang
+                                                            tersedia pada menu <strong><a class="text-white"
+                                                                    href="{{ route('voting.index') }}">Voting</a></strong>.
+                                                            Aplikasi ini juga
+                                                            menyediakan fitur <strong><a class="text-white"
+                                                                href="{{ route('qna.index') }}">Diskusi</a></strong> yang dapat kamu manfaatkan.
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
-                            @endif
-                            
                         </div>
                     </div>
                 </div>

@@ -3,9 +3,9 @@
         <div class="float-start">
             <p>2023 &copy; Voler</p>
         </div>
-        <div class="float-end">
+        {{-- <div class="float-end">
             <p>Crafted with <span class='text-danger'><i data-feather="heart"></i></span> by <a
                     href="#">Ahmad Fauzi</a></p>
-        </div>
+        </div> --}}
     </div>
 </footer>

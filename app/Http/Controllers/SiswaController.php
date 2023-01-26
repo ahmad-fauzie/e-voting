@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Hasil;
 use App\Imports\SiswaImport;
 use App\Exports\SiswaExport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 

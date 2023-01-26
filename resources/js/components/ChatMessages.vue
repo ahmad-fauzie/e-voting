@@ -42,8 +42,8 @@
           />
           
           <span class="input-group-btn">
-            <button class="btn btn-primary btn-sm" id="btn-chat" @click="sendMessage(message.group_id, index)">
-              Balas
+            <button class="btn btn-primary btn-sm d-flex" id="btn-chat" @click="sendMessage(message.group_id, index)">
+              <i class="bi bi-cursor d-block h-auto"></i><span class="d-none d-md-block ps-1">Balas</span>
             </button>
           </span>
         </div>

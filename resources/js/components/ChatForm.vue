@@ -21,8 +21,8 @@
       />
       
       <span class="input-group-btn">
-        <button class="btn btn-primary btn-sm" id="btn-chat" @click="sendMessage">
-          Kirim
+        <button class="btn btn-primary btn-sm d-flex" id="btn-chat" @click="sendMessage">
+          <i class="bi bi-cursor d-block h-auto"></i><span class="d-none d-md-block ps-1">Kirim</span>
         </button>
       </span>
     </div>

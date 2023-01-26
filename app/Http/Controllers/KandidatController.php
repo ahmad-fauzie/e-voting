@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kandidat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class KandidatController extends Controller
@@ -157,6 +158,12 @@ class KandidatController extends Controller
   }
 
   public function deleteAll(Request $request) {
+    $kandidats = Kandidat::all();
+    foreach($kandidats as $kandidat) {
+        if ($kandidat->foto) {
+            Storage::delete('public/kandidats/' . $kandidat->foto);
+        }
+    }
     Kandidat::truncate();
         return response()->json([
       'status' => 200,

@@ -2297,14 +2297,18 @@ var render = function render() {
   }), _vm._v(" "), _c("span", {
     staticClass: "input-group-btn"
   }, [_c("button", {
-    staticClass: "btn btn-primary btn-sm",
+    staticClass: "btn btn-primary btn-sm d-flex",
     attrs: {
       id: "btn-chat"
     },
     on: {
       click: _vm.sendMessage
     }
-  }, [_vm._v("\n        Kirim\n      ")])])])]) : _c("div", {
+  }, [_c("i", {
+    staticClass: "bi bi-cursor d-block h-auto"
+  }), _c("span", {
+    staticClass: "d-none d-md-block ps-1"
+  }, [_vm._v("Kirim")])])])])]) : _c("div", {
     staticClass: "alert alert-light-warning color-warning"
   }, [_c("i", {
     staticClass: "bi bi-exclamation-circle me-1"
@@ -2467,7 +2471,7 @@ var render = function render() {
     }), _vm._v(" "), _c("span", {
       staticClass: "input-group-btn"
     }, [_c("button", {
-      staticClass: "btn btn-primary btn-sm",
+      staticClass: "btn btn-primary btn-sm d-flex",
       attrs: {
         id: "btn-chat"
       },
@@ -2476,7 +2480,11 @@ var render = function render() {
           return _vm.sendMessage(message.group_id, index);
         }
       }
-    }, [_vm._v("\n            Balas\n          ")])])]) : _vm._e(), _vm._v(" "), _c("hr")])]);
+    }, [_c("i", {
+      staticClass: "bi bi-cursor d-block h-auto"
+    }), _c("span", {
+      staticClass: "d-none d-md-block ps-1"
+    }, [_vm._v("Balas")])])])]) : _vm._e(), _vm._v(" "), _c("hr")])]);
   }), 0);
 };
 var staticRenderFns = [];

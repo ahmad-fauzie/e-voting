@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Waktu;
+use Illuminate\Support\Facades\Auth;
 use DateTime;
 
 class WaktuController extends Controller
@@ -55,9 +56,16 @@ class WaktuController extends Controller
     }
 
     public function store(Request $request){
+      if(Waktu::all()->count() > 0){
+        return response()->json([
+          'status' => 404,
+          'message' => 'Jadwal Voting Sudah Ada!',
+        ]);
+      }
       if($request->awal >= $request->akhir){
         return response()->json([
           'status' => 404,
+          'message' => 'Waktu Awal Tidak Boleh Lebih Besar Atau Sama Dengan Waktu Akhir!',
         ]);
       }
       $waktuData = ['waktu_awal' => $request->awal, 'waktu_akhir' => $request->akhir];
@@ -88,6 +96,7 @@ class WaktuController extends Controller
       if($request->awal >= $request->akhir){
         return response()->json([
           'status' => 404,
+          'message' => 'Waktu Awal Tidak Boleh Lebih Besar Atau Sama Dengan Waktu Akhir!',
         ]);
       }
       $waktu = Waktu::find($request->waktu_id);

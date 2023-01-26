@@ -92,4 +92,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/deleteMessagesAll', [ChatsController::class, 'deleteMessageAll'])->name('messages.deleteAll');
     
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+    Route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
+    Route::get('/feedback/fetchAll', [FeedbackController::class, 'fetchAllFeedback'])->name('feedback.fetchAll');
+    Route::delete('/feedback/delete', [FeedbackController::class, 'deleteFeedback'])->name('feedback.delete');
 });

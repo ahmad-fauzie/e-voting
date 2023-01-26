@@ -29,8 +29,9 @@
                     <div class="card border-0 shadow rounded mt-3 mb-5">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="text-secondary">Waktu Pemilihan</h3>
-                            <button class="btn btn-secondary text-white p-2" id="add_waktu" data-bs-toggle="modal"
-                                data-bs-target="#addWaktuModal"><i class="bi-clock"></i><div style="display: contents;" id="icon"> Setting Waktu</div></button>
+                            <button class="btn btn-primary d-flex text-white p-2" id="add_waktu" data-bs-toggle="modal"
+                                data-bs-target="#addWaktuModal"><i class="bi bi-clock d-block h-auto"></i>
+                                <span class="d-none d-md-block ps-1">Setting Waktu</span></button>
                         </div>
                         <div class="card-body" id="show_all_waktu">
                             <h1 class="text-center text-secondary my-5">Loading...</h1>
@@ -63,13 +64,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
+                                    <span>Close</span>
                                 </button>
                                 <button type="submit" id="add_waktu_btn" class="btn btn-primary ml-1"
                                     data-bs-dismiss="modal">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Simpan</span>
+                                    <span>Simpan</span>
                                 </button>
                             </div>
                         </form>
@@ -102,13 +101,11 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Close</span>
+                                    <span>Close</span>
                                 </button>
                                 <button type="submit" id="edit_waktu_btn" class="btn btn-primary ml-1"
                                     data-bs-dismiss="modal">
-                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Simpan</span>
+                                    <span>Simpan</span>
                                 </button>
                             </div>
                         </form>
@@ -128,14 +125,6 @@
 
     <script>
         $(function() {
-            var e = window.innerWidth;
-            if(e < 768){
-                var buttons = document.querySelectorAll('[id=icon]');
-                buttons.forEach(function(button) {
-                    button.style.display = "none";
-                });
-            }
-
             var toastMixin = Swal.mixin({
                 toast: true,
                 icon: 'success',
@@ -176,7 +165,7 @@
                         } else {
                             Swal.fire(
                                 'Gagal',
-                                'Waktu Awal Tidak Boleh Lebih Besar Atau Sama Dengan Waktu Akhir!',
+                                response.message,
                                 'error',
                             )
                         }
@@ -229,7 +218,7 @@
                         } else {
                             Swal.fire(
                                 'Gagal',
-                                'Waktu Awal Tidak Boleh Lebih Besar Atau Sama Dengan Waktu Akhir!',
+                                response.message,
                                 'error',
                             )
                         }

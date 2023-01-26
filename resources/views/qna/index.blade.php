@@ -106,7 +106,7 @@
                         )
                         setTimeout(function() {
                             window.location = `chat/${id}`;
-                        }, 2000);
+                        }, 1000);
                     }
                 });
             });

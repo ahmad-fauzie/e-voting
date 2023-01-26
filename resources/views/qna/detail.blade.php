@@ -37,8 +37,9 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h3 class="text-secondary m-0">Pesan</h3>
                         @if(Auth::check() && Auth::user()->level === 'admin')
-                        <button class="btn btn-secondary p-2">
-                            <a href="#" class="text-white deleteAll" id="{{ $id }}"><i class="bi-trash"></i><div style="display: contents;" id="icon"> Hapus Semua</div></a>
+                        <button class="btn btn-danger p-2">
+                            <a href="#" class="text-white deleteAll d-flex" id="{{ $id }}"><i class="bi bi-trash d-block h-auto"></i>
+                                <span class="d-none d-md-block ps-1">Hapus Semua</span></a>
                         </button>
                         @endif
                     </div>
@@ -60,14 +61,6 @@
     <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="application/javascript">
         $(function() {
-            var e = window.innerWidth;
-            if(e < 915){
-                var buttons = document.querySelectorAll('[id=icon]');
-                buttons.forEach(function(button) {
-                    button.style.display = "none";
-                });
-            }
-
             var toastMixin = Swal.mixin({
                 toast: true,
                 icon: 'success',
