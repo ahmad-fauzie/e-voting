@@ -16,6 +16,7 @@ class CreateFeedbacksTable extends Migration
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
             $table->integer('id_user')->unsigned();
+            $table->string('name');
             $table->string('login');
             $table->string('daftar');
             $table->string('reset');

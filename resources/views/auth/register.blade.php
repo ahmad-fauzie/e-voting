@@ -64,7 +64,7 @@
                         <input type="email" class="form-control" id="txt-input" name="email" placeholder="Email"
                             required>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-1">
                         <span class="input-item">
                             <i class="fa fa-key"></i>
                         </span>
@@ -74,6 +74,7 @@
                             <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
                         </span>
                     </div>
+                    <p style="font-size: 15px; font-style: italic;">Password minimal 8 karakter</p>
                     <button class="btn log-in bg-white" type="submit">Daftar</button>
 
                     <div class="other">

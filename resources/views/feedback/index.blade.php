@@ -70,6 +70,10 @@
                     <div class="card border-0 shadow rounded mt-3 mb-5">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="text-secondary">Masukan</h3>
+                            @if(Auth::check() && Auth::user()->level == 'admin')
+                                <div id="export">
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="alert alert-info">
@@ -84,8 +88,8 @@
                                     <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
                                         <div class="row">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="login" value="Sangat Baik"
-                                                    id="login1">
+                                                <input class="form-check-input" type="radio" name="login"
+                                                    value="Sangat Baik" id="login1">
                                                 <label class="form-check-label" for="login1">
                                                     Sangat Baik
                                                 </label>
@@ -98,8 +102,8 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="login" id="login3" value="Cukup"
-                                                    checked>
+                                                <input class="form-check-input" type="radio" name="login" id="login3"
+                                                    value="Cukup" checked>
                                                 <label class="form-check-label" for="login3">
                                                     Cukup
                                                 </label>
@@ -112,8 +116,8 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="login" value="Sangat Buruk"
-                                                    id="login5">
+                                                <input class="form-check-input" type="radio" name="login"
+                                                    value="Sangat Buruk" id="login5">
                                                 <label class="form-check-label" for="login5">
                                                     Sangat Buruk
                                                 </label>
@@ -121,83 +125,83 @@
                                         </div>
                                     </div>
 
-                                    @if(Auth::check() && Auth::user()->level === 'siswa')
-                                    <li>Bagaimana pendapatmu mengenai halaman Daftar dan proses daftar?</li>
-                                    <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="daftar" value="Sangat Baik"
-                                                    id="daftar1">
-                                                <label class="form-check-label" for="daftar1">
-                                                    Sangat Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="daftar" value="Baik"
-                                                    id="daftar2">
-                                                <label class="form-check-label" for="daftar2">
-                                                    Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="daftar" id="daftar3" value="Cukup"
-                                                    checked>
-                                                <label class="form-check-label" for="daftar3">
-                                                    Cukup
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="daftar" value="Buruk"
-                                                    id="daftar4">
-                                                <label class="form-check-label" for="daftar4">
-                                                    Buruk
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="daftar" value="Sangat Buruk"
-                                                    id="daftar5">
-                                                <label class="form-check-label" for="daftar5">
-                                                    Sangat Buruk
-                                                </label>
+                                    @if (Auth::check() && Auth::user()->level === 'siswa')
+                                        <li>Bagaimana pendapatmu mengenai halaman Daftar dan proses daftar?</li>
+                                        <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="daftar"
+                                                        value="Sangat Baik" id="daftar1">
+                                                    <label class="form-check-label" for="daftar1">
+                                                        Sangat Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="daftar"
+                                                        value="Baik" id="daftar2">
+                                                    <label class="form-check-label" for="daftar2">
+                                                        Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="daftar"
+                                                        id="daftar3" value="Cukup" checked>
+                                                    <label class="form-check-label" for="daftar3">
+                                                        Cukup
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="daftar"
+                                                        value="Buruk" id="daftar4">
+                                                    <label class="form-check-label" for="daftar4">
+                                                        Buruk
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="daftar"
+                                                        value="Sangat Buruk" id="daftar5">
+                                                    <label class="form-check-label" for="daftar5">
+                                                        Sangat Buruk
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     @endif
 
                                     <li>Bagaimana pendapatmu mengenai halaman Reset Password dan proses reset?</li>
                                     <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
                                         <div class="row">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="reset" value="Sangat Baik"
-                                                    id="reset1">
+                                                <input class="form-check-input" type="radio" name="reset"
+                                                    value="Sangat Baik" id="reset1">
                                                 <label class="form-check-label" for="reset1">
                                                     Sangat Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="reset" value="Baik"
-                                                    id="reset2">
+                                                <input class="form-check-input" type="radio" name="reset"
+                                                    value="Baik" id="reset2">
                                                 <label class="form-check-label" for="reset2">
                                                     Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="reset" id="reset3" value="Cukup"
-                                                    checked>
+                                                <input class="form-check-input" type="radio" name="reset"
+                                                    id="reset3" value="Cukup" checked>
                                                 <label class="form-check-label" for="reset3">
                                                     Cukup
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="reset" value="Buruk"
-                                                    id="reset4">
+                                                <input class="form-check-input" type="radio" name="reset"
+                                                    value="Buruk" id="reset4">
                                                 <label class="form-check-label" for="reset4">
                                                     Buruk
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="reset" value="Sangat Buruk"
-                                                    id="reset5">
+                                                <input class="form-check-input" type="radio" name="reset"
+                                                    value="Sangat Buruk" id="reset5">
                                                 <label class="form-check-label" for="reset5">
                                                     Sangat Buruk
                                                 </label>
@@ -209,204 +213,206 @@
                                     <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
                                         <div class="row">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="dashboard" value="Sangat Baik"
-                                                    id="dashboard1">
+                                                <input class="form-check-input" type="radio" name="dashboard"
+                                                    value="Sangat Baik" id="dashboard1">
                                                 <label class="form-check-label" for="dashboard1">
                                                     Sangat Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="dashboard" value="Baik"
-                                                    id="dashboard2">
+                                                <input class="form-check-input" type="radio" name="dashboard"
+                                                    value="Baik" id="dashboard2">
                                                 <label class="form-check-label" for="dashboard2">
                                                     Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="dashboard" value="Cukup"
-                                                    id="dashboard3" checked>
+                                                <input class="form-check-input" type="radio" name="dashboard"
+                                                    value="Cukup" id="dashboard3" checked>
                                                 <label class="form-check-label" for="dashboard3">
                                                     Cukup
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="dashboard" value="Buruk"
-                                                    id="dashboard4">
+                                                <input class="form-check-input" type="radio" name="dashboard"
+                                                    value="Buruk" id="dashboard4">
                                                 <label class="form-check-label" for="dashboard4">
                                                     Buruk
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="dashboard" value="Sangat Buruk"
-                                                    id="dashboard5">
+                                                <input class="form-check-input" type="radio" name="dashboard"
+                                                    value="Sangat Buruk" id="dashboard5">
                                                 <label class="form-check-label" for="dashboard5">
                                                     Sangat Buruk
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    @if(Auth::check() && Auth::user()->level === 'admin')
-                                    <li>Bagaimana pendapatmu mengenai halaman Master Siswa dan proses mengelola data siswa?</li>
-                                    <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="siswa" value="Sangat Baik"
-                                                    id="siswa1">
-                                                <label class="form-check-label" for="siswa1">
-                                                    Sangat Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="siswa" value="Baik"
-                                                    id="siswa2">
-                                                <label class="form-check-label" for="siswa2">
-                                                    Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="siswa" value="Cukup"
-                                                    id="siswa3" checked>
-                                                <label class="form-check-label" for="siswa3">
-                                                    Cukup
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="siswa" value="Buruk"
-                                                    id="siswa4">
-                                                <label class="form-check-label" for="siswa4">
-                                                    Buruk
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="siswa" value="Sangat Buruk"
-                                                    id="siswa5">
-                                                <label class="form-check-label" for="siswa5">
-                                                    Sangat Buruk
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <li>Bagaimana pendapatmu mengenai halaman Master kandidat dan proses mengelola data kandidat?</li>
-                                    <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kandidat" value="Sangat Baik"
-                                                    id="kandidat1">
-                                                <label class="form-check-label" for="kandidat1">
-                                                    Sangat Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kandidat" value="Baik"
-                                                    id="kandidat2">
-                                                <label class="form-check-label" for="kandidat2">
-                                                    Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kandidat" value="Cukup"
-                                                    id="kandidat3" checked>
-                                                <label class="form-check-label" for="kandidat3">
-                                                    Cukup
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kandidat" value="Buruk"
-                                                    id="kandidat4">
-                                                <label class="form-check-label" for="kandidat4">
-                                                    Buruk
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kandidat" value="Sangat Buruk"
-                                                    id="kandidat5">
-                                                <label class="form-check-label" for="kandidat5">
-                                                    Sangat Buruk
-                                                </label>
+                                    @if (Auth::check() && Auth::user()->level === 'admin')
+                                        <li>Bagaimana pendapatmu mengenai halaman Master Siswa dan proses mengelola data
+                                            siswa?</li>
+                                        <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="siswa"
+                                                        value="Sangat Baik" id="siswa1">
+                                                    <label class="form-check-label" for="siswa1">
+                                                        Sangat Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="siswa"
+                                                        value="Baik" id="siswa2">
+                                                    <label class="form-check-label" for="siswa2">
+                                                        Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="siswa"
+                                                        value="Cukup" id="siswa3" checked>
+                                                    <label class="form-check-label" for="siswa3">
+                                                        Cukup
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="siswa"
+                                                        value="Buruk" id="siswa4">
+                                                    <label class="form-check-label" for="siswa4">
+                                                        Buruk
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="siswa"
+                                                        value="Sangat Buruk" id="siswa5">
+                                                    <label class="form-check-label" for="siswa5">
+                                                        Sangat Buruk
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <li>Bagaimana pendapatmu mengenai halaman Master kandidat dan proses mengelola data
+                                            kandidat?</li>
+                                        <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="kandidat"
+                                                        value="Sangat Baik" id="kandidat1">
+                                                    <label class="form-check-label" for="kandidat1">
+                                                        Sangat Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="kandidat"
+                                                        value="Baik" id="kandidat2">
+                                                    <label class="form-check-label" for="kandidat2">
+                                                        Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="kandidat"
+                                                        value="Cukup" id="kandidat3" checked>
+                                                    <label class="form-check-label" for="kandidat3">
+                                                        Cukup
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="kandidat"
+                                                        value="Buruk" id="kandidat4">
+                                                    <label class="form-check-label" for="kandidat4">
+                                                        Buruk
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="kandidat"
+                                                        value="Sangat Buruk" id="kandidat5">
+                                                    <label class="form-check-label" for="kandidat5">
+                                                        Sangat Buruk
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
 
-                                    @if(Auth::check() && Auth::user()->level === 'siswa')
-                                    <li>Bagaimana pendapatmu mengenai halaman Voting dan proses voting?</li>
-                                    <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="voting" value="Sangat Baik"
-                                                    id="voting1">
-                                                <label class="form-check-label" for="voting1">
-                                                    Sangat Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="voting" value="Baik"
-                                                    id="voting2">
-                                                <label class="form-check-label" for="voting2">
-                                                    Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="voting" value="Cukup"
-                                                    id="voting3" checked>
-                                                <label class="form-check-label" for="voting3">
-                                                    Cukup
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="voting" value="Buruk"
-                                                    id="voting4">
-                                                <label class="form-check-label" for="voting4">
-                                                    Buruk
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="voting" value="Sangat Buruk"
-                                                    id="voting5">
-                                                <label class="form-check-label" for="voting5">
-                                                    Sangat Buruk
-                                                </label>
+                                    @if (Auth::check() && Auth::user()->level === 'siswa')
+                                        <li>Bagaimana pendapatmu mengenai halaman Voting dan proses voting?</li>
+                                        <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="voting"
+                                                        value="Sangat Baik" id="voting1">
+                                                    <label class="form-check-label" for="voting1">
+                                                        Sangat Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="voting"
+                                                        value="Baik" id="voting2">
+                                                    <label class="form-check-label" for="voting2">
+                                                        Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="voting"
+                                                        value="Cukup" id="voting3" checked>
+                                                    <label class="form-check-label" for="voting3">
+                                                        Cukup
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="voting"
+                                                        value="Buruk" id="voting4">
+                                                    <label class="form-check-label" for="voting4">
+                                                        Buruk
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="voting"
+                                                        value="Sangat Buruk" id="voting5">
+                                                    <label class="form-check-label" for="voting5">
+                                                        Sangat Buruk
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     @endif
 
                                     <li>Bagaimana pendapatmu mengenai halaman QnA/Diskusi dan proses diskusi?</li>
                                     <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
                                         <div class="row">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="qna" value="Sangat Baik"
-                                                    id="qna1">
+                                                <input class="form-check-input" type="radio" name="qna"
+                                                    value="Sangat Baik" id="qna1">
                                                 <label class="form-check-label" for="qna1">
                                                     Sangat Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="qna" value="Baik"
-                                                    id="qna2">
+                                                <input class="form-check-input" type="radio" name="qna"
+                                                    value="Baik" id="qna2">
                                                 <label class="form-check-label" for="qna2">
                                                     Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="qna" value="Cukup"
-                                                    id="qna3" checked>
+                                                <input class="form-check-input" type="radio" name="qna"
+                                                    value="Cukup" id="qna3" checked>
                                                 <label class="form-check-label" for="qna3">
                                                     Cukup
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="qna" value="Buruk"
-                                                    id="qna4">
+                                                <input class="form-check-input" type="radio" name="qna"
+                                                    value="Buruk" id="qna4">
                                                 <label class="form-check-label" for="qna4">
                                                     Buruk
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="qna" value="Sangat Buruk"
-                                                    id="qna5">
+                                                <input class="form-check-input" type="radio" name="qna"
+                                                    value="Sangat Buruk" id="qna5">
                                                 <label class="form-check-label" for="qna5">
                                                     Sangat Buruk
                                                 </label>
@@ -414,45 +420,46 @@
                                         </div>
                                     </div>
 
-                                    @if(Auth::check() && Auth::user()->level === 'admin')
-                                    <li>Bagaimana pendapatmu mengenai halaman Hasil dan proses mengunduh dokumen hasil voting?</li>
+                                    @if (Auth::check() && Auth::user()->level === 'admin')
+                                        <li>Bagaimana pendapatmu mengenai halaman Hasil dan proses mengunduh dokumen hasil
+                                            voting?</li>
                                     @endif
-                                    @if(Auth::check() && Auth::user()->level === 'siswa')
-                                    <li>Bagaimana pendapatmu mengenai halaman Hasil?</li>
+                                    @if (Auth::check() && Auth::user()->level === 'siswa')
+                                        <li>Bagaimana pendapatmu mengenai halaman Hasil?</li>
                                     @endif
                                     <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
                                         <div class="row">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="hasil" value="Sangat Baik"
-                                                    id="hasil1">
+                                                <input class="form-check-input" type="radio" name="hasil"
+                                                    value="Sangat Baik" id="hasil1">
                                                 <label class="form-check-label" for="hasil1">
                                                     Sangat Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="hasil" value="Baik"
-                                                    id="hasil2">
+                                                <input class="form-check-input" type="radio" name="hasil"
+                                                    value="Baik" id="hasil2">
                                                 <label class="form-check-label" for="hasil2">
                                                     Baik
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="hasil" value="Cukup"
-                                                    id="hasil3" checked>
+                                                <input class="form-check-input" type="radio" name="hasil"
+                                                    value="Cukup" id="hasil3" checked>
                                                 <label class="form-check-label" for="hasil3">
                                                     Cukup
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="hasil" value="Buruk"
-                                                    id="hasil4">
+                                                <input class="form-check-input" type="radio" name="hasil"
+                                                    value="Buruk" id="hasil4">
                                                 <label class="form-check-label" for="hasil4">
                                                     Buruk
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="hasil" value="Sangat Buruk"
-                                                    id="hasil5">
+                                                <input class="form-check-input" type="radio" name="hasil"
+                                                    value="Sangat Buruk" id="hasil5">
                                                 <label class="form-check-label" for="hasil5">
                                                     Sangat Buruk
                                                 </label>
@@ -460,88 +467,88 @@
                                         </div>
                                     </div>
 
-                                    @if(Auth::check() && Auth::user()->level === 'admin')
-                                    <li>Bagaimana pendapatmu mengenai halaman Jadwal Voting dan proses penjadwalan?</li>
-                                    <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jadwal" value="Sangat Baik"
-                                                    id="jadwal1">
-                                                <label class="form-check-label" for="jadwal1">
-                                                    Sangat Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jadwal" value="Baik"
-                                                    id="jadwal2">
-                                                <label class="form-check-label" for="jadwal2">
-                                                    Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jadwal" value="Cukup"
-                                                    id="jadwal3" checked>
-                                                <label class="form-check-label" for="jadwal3">
-                                                    Cukup
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jadwal" value="Buruk"
-                                                    id="jadwal4">
-                                                <label class="form-check-label" for="jadwal4">
-                                                    Buruk
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jadwal" value="Sangat Buruk"
-                                                    id="jadwal5">
-                                                <label class="form-check-label" for="jadwal5">
-                                                    Sangat Buruk
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <li>Bagaimana pendapatmu mengenai halaman Profile dan proses perubahan profile?</li>
-                                    <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="profile" value="Sangat Baik"
-                                                    id="profile1">
-                                                <label class="form-check-label" for="profile1">
-                                                    Sangat Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="profile" value="Baik"
-                                                    id="profile2">
-                                                <label class="form-check-label" for="profile2">
-                                                    Baik
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="profile" value="Cukup"
-                                                    id="profile3" checked>
-                                                <label class="form-check-label" for="profile3">
-                                                    Cukup
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="profile" value="Buruk"
-                                                    id="profile4">
-                                                <label class="form-check-label" for="profile4">
-                                                    Buruk
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="profile" value="Sangat Buruk"
-                                                    id="profile5">
-                                                <label class="form-check-label" for="profile5">
-                                                    Sangat Buruk
-                                                </label>
+                                    @if (Auth::check() && Auth::user()->level === 'admin')
+                                        <li>Bagaimana pendapatmu mengenai halaman Jadwal Voting dan proses penjadwalan?</li>
+                                        <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="jadwal"
+                                                        value="Sangat Baik" id="jadwal1">
+                                                    <label class="form-check-label" for="jadwal1">
+                                                        Sangat Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="jadwal"
+                                                        value="Baik" id="jadwal2">
+                                                    <label class="form-check-label" for="jadwal2">
+                                                        Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="jadwal"
+                                                        value="Cukup" id="jadwal3" checked>
+                                                    <label class="form-check-label" for="jadwal3">
+                                                        Cukup
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="jadwal"
+                                                        value="Buruk" id="jadwal4">
+                                                    <label class="form-check-label" for="jadwal4">
+                                                        Buruk
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="jadwal"
+                                                        value="Sangat Buruk" id="jadwal5">
+                                                    <label class="form-check-label" for="jadwal5">
+                                                        Sangat Buruk
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <li>Bagaimana pendapatmu mengenai halaman Profile dan proses perubahan profile?</li>
+                                        <div class="d-flex justify-content-start align-items-center mb-4 ms-3">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="profile"
+                                                        value="Sangat Baik" id="profile1">
+                                                    <label class="form-check-label" for="profile1">
+                                                        Sangat Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="profile"
+                                                        value="Baik" id="profile2">
+                                                    <label class="form-check-label" for="profile2">
+                                                        Baik
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="profile"
+                                                        value="Cukup" id="profile3" checked>
+                                                    <label class="form-check-label" for="profile3">
+                                                        Cukup
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="profile"
+                                                        value="Buruk" id="profile4">
+                                                    <label class="form-check-label" for="profile4">
+                                                        Buruk
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="profile"
+                                                        value="Sangat Buruk" id="profile5">
+                                                    <label class="form-check-label" for="profile5">
+                                                        Sangat Buruk
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
 
                                     <li>Mohon berikan rating dan masukanmu secara keseluruhan aplikasi E-Voting ini!</li>
@@ -681,6 +688,12 @@
                 })
             });
 
+            $(document).on('click', '#btn_export', function(e) {
+                e.preventDefault();
+                const url = '{{ route('feedback.export') }}';
+                window.location = url;
+            });
+
             fetchAllFeedback();
 
             function fetchAllFeedback() {
@@ -689,6 +702,7 @@
                     method: 'get',
                     success: function(response) {
                         $("#show_feedback").html(response.data);
+                        $("#export").html(response.export);
                     }
                 });
             }

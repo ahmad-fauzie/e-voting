@@ -34,7 +34,7 @@
                                 <button class="btn btn-danger deleteVoting p-2" style="height: fit-content;"><i class="bi bi-trash fs-4"></i></button>
                                 <div class="card-content ms-3">
                                     <div class="card-title mb-2">Reset Hasil Voting</div>
-                                    <div class="card-subtitle">Pilih ini jika anda ingin menghapus seluruh data hasil voting saat ini.</div>
+                                    <div class="card-subtitle">Pilih ini jika anda ingin menghapus seluruh data hasil voting saat ini (termasuk dokumen hasil voting). Lakukan ketika seluruh proses pemilihan sudah selesai.</div>
                                 </div>
                             </div>
 

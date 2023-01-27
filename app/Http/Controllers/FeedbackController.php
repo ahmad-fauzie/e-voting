@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use App\Models\User;
+use App\Exports\FeedbackExport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -17,12 +19,13 @@ class FeedbackController extends Controller
         $user = Auth::user();
         $feedbacks = $user->level == 'admin' ? Feedback::orderBy('created_at', 'desc')->get() : Feedback::where('id_user', $user->id)->orderBy('created_at', 'desc')->get();
         $data = '';
+        $export = '';
         if($feedbacks->count() > 0){
             foreach($feedbacks as $feedback){
                 $data .= '<div class="card">
                 <div class="card-content p-3">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="card-title mb-3">' . $feedback->user->name . '</h4>
+                        <h4 class="card-title mb-3">' . $feedback->name . '</h4>
                         <div class="deleteIcon" id="' . $feedback->id . '" style="padding-bottom: 0.3rem;">
                             <i class="bi bi-trash text-danger" style="height: fit-content; font-size: 15px; cursor: pointer;"></i>
                         </div>
@@ -55,12 +58,16 @@ class FeedbackController extends Controller
                 </div>
             </div>';
             }
+            $export .= '<button class="btn btn-primary d-flex text-white p-2" id="btn_export"><i class="bi bi-file-earmark-arrow-down d-block h-auto"></i>
+            <span class="d-none d-md-block ps-1">Export</span></button>';
         } else{
             $data = '';
+            $export = '';
         }
         return response()->json([
             'status' => 200,
-            'data' => $data
+            'data' => $data,
+            'export' => $export,
         ]);
     }
 
@@ -76,6 +83,7 @@ class FeedbackController extends Controller
         $feedbackData = [
             'id_user' => $user->id,
             'login' => $request->login,
+            'name' => $user->name,
             'daftar' => $user->level == 'admin' ? '' : $request->daftar ,
             'reset' => $request->reset,
             'dashboard' => $request->dashboard,
@@ -94,6 +102,10 @@ class FeedbackController extends Controller
             'status' => 200,
             'message' => 'Terima Kasih Atas Feedbacknya.'
         ]);
+    }
+
+    public function export(){
+        return Excel::download(new FeedbackExport, 'Feedback.xlsx');
     }
 
     public function deleteFeedback(Request $request){

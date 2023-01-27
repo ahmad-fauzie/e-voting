@@ -52,6 +52,12 @@
                         </span>
                     </div>
                     <button class="btn log-in bg-white" type="submit">Login</button>
+                    
+                    {{-- <hr> --}}
+                    {{-- <div class="input-group mb-3"> --}}
+                        <h6 class="card-title text-center mb-4">Hasil Voting Sementara Cek <a class="text-dark" href="{{ route('hasil.index') }}"><strong>Disini</strong></a></h6>
+                    {{-- <hr> --}}
+                    {{-- </div> --}}
 
                     <div class="other">
                         <a href="{{ route('forget.password.get') }}" class="btn submits frgt-pass">Lupa Password</a>

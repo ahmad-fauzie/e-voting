@@ -14,19 +14,6 @@ class SiswaExport implements FromArray
     * @return \Illuminate\Support\Collection
     */
 
-    // public function collection(){
-    //     return Siswa::all();
-    // }
-
-    // public function map($row): array{
-    //     $fields = [
-    //        $row->nis,
-    //        $row->name,
-    //        $row->email,
-    //     ];
-    //     return $fields;
-    // }
-
     public function array(): array
     {
         return [

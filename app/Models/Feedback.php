@@ -15,6 +15,7 @@ class Feedback extends Model
     protected $fillable = [
         'id_user',
         'login',
+        'name',
         'daftar',
         'reset',
         'dashboard',

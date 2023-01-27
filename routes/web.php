@@ -40,6 +40,8 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::get('/hasil', [HasilController::class, 'index'])->name('hasil.index');
 Route::get('/hasil/fetchall', [HasilController::class, 'fetchAll'])->name('hasil.fetchAll');
 
+Route::get('/feedback/export', [FeedbackController::class, 'export'])->name('feedback.export');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
