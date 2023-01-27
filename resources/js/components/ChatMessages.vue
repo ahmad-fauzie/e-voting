@@ -78,7 +78,6 @@ export default {
   computed: {
     filterMessages(){
       return this.messages.filter(message => {
-        console.log(this.kandidats.id);
         return message.kandidat_id == this.kandidats.id
       });
     },
@@ -95,7 +94,13 @@ export default {
   
   methods: {
     sendMessage(group_id, index) {
-      console.log(this.last);
+      if (this.replyMessage[index] === "" || this.replyMessage[index] === undefined) {
+        this.$swal(
+          'Gagal',
+          'Tolong masukkan pesan terlebih dahulu sebelum mengirim!'
+        );
+        return false;
+      }
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,
@@ -103,7 +108,6 @@ export default {
         kandidat_id: this.kandidats.id,
         group_id: group_id,
       });
-      console.log(this.messages);
       this.replyMessage[index] = "";
     },
     filterReply(group_id) {
@@ -129,7 +133,6 @@ export default {
       return initials;
     },
     deleteMessage(message_id) {
-      console.log(message_id);
       this.$swal({
         title: 'Apakah Kamu Yakin?',
         text: "Kamu tidak bisa mengembalikan pesan ini!",

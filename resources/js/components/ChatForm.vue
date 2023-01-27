@@ -64,7 +64,13 @@ export default {
 
   methods: {
     sendMessage() {
-      console.log(this.last);
+      if (this.newMessage === "" || this.newMessage === undefined) {
+        this.$swal(
+          'Gagal',
+          'Tolong masukkan pesan terlebih dahulu sebelum mengirim!'
+        );
+        return false;
+      }
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,

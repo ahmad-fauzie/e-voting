@@ -82,6 +82,13 @@
                         <span>Profile</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
+                    <a href="{{ route('setting.index') }}" class="sidebar-link">
+                        <i data-feather="settings" width="20"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
                 @endif
 
                 @if(Auth::check())

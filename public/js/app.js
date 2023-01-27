@@ -2093,7 +2093,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendMessage: function sendMessage() {
-      console.log(this.last);
+      if (this.newMessage === "" || this.newMessage === undefined) {
+        this.$swal('Gagal', 'Tolong masukkan pesan terlebih dahulu sebelum mengirim!');
+        return false;
+      }
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,
@@ -2165,7 +2168,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     filterMessages: function filterMessages() {
       var _this = this;
       return this.messages.filter(function (message) {
-        console.log(_this.kandidats.id);
         return message.kandidat_id == _this.kandidats.id;
       });
     },
@@ -2181,7 +2183,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     sendMessage: function sendMessage(group_id, index) {
-      console.log(this.last);
+      if (this.replyMessage[index] === "" || this.replyMessage[index] === undefined) {
+        this.$swal('Gagal', 'Tolong masukkan pesan terlebih dahulu sebelum mengirim!');
+        return false;
+      }
       this.$emit("messagesent", {
         id: this.last,
         user: this.user,
@@ -2189,7 +2194,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         kandidat_id: this.kandidats.id,
         group_id: group_id
       });
-      console.log(this.messages);
       this.replyMessage[index] = "";
     },
     filterReply: function filterReply(group_id) {
@@ -2215,7 +2219,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     deleteMessage: function deleteMessage(message_id) {
       var _this2 = this;
-      console.log(message_id);
       this.$swal({
         title: 'Apakah Kamu Yakin?',
         text: "Kamu tidak bisa mengembalikan pesan ini!",
@@ -57416,8 +57419,6 @@ var app = new Vue({
       });
     },
     deleteMessage: function deleteMessage(id) {
-      console.log(id.id);
-      console.log(this.messages);
       var index = this.messages.findIndex(function (x) {
         return x.id === id.id;
       });

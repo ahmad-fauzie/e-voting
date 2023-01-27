@@ -93,8 +93,6 @@ const app = new Vue({
         },
 
         deleteMessage(id) {
-            console.log(id.id);
-            console.log(this.messages);
             let index = this.messages.findIndex(x => x.id === id.id);
             this.messages.splice(index, 1);
 
