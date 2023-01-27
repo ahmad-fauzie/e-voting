@@ -1,7 +1,9 @@
 <div id="sidebar" class='active'>
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
-            <img src="{{ asset('storage/smk-65.jpg') }}" alt="" srcset="">
+            <a href="{{ route('dashboard.index') }}">
+                <img src="{{ asset('storage/smk-65.jpg') }}" alt="" srcset="">
+            </a>
         </div>
         <div class="sidebar-menu">
             <ul class="menu">

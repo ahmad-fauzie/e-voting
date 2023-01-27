@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('images/favicon.svg') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" href="{{ asset('storage/smk-65.jpg') }}"/>
     
     <script type="application/javascript" src="https://unpkg.com/feather-icons"></script>
     @yield('style')

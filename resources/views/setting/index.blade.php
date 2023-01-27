@@ -29,7 +29,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="text-secondary">Setting Aplikasi</h3>
                         </div>
-                        <div class="card-body text-dark">
+                        <div class="card-body text-dark mb-3 mb-sm-0">
                             <div class="d-flex bg-grey justify-content-start align-items-center p-3" style="box-shadow: 0 2px 6px 0 rgba(0,0,0,.3);">
                                 <button class="btn btn-danger deleteVoting p-2" style="height: fit-content;"><i class="bi bi-trash fs-4"></i></button>
                                 <div class="card-content ms-3">

@@ -877,7 +877,7 @@ footer {
 }
 
 .sidebar-wrapper .sidebar-header img {
-    height: 2.5rem
+    height: 6rem
 }
 
 .sidebar-wrapper .sidebar-toggler.x {
@@ -889,7 +889,6 @@ footer {
 
 .sidebar-wrapper .menu {
     padding-left: 0;
-    margin-top: 2rem
 }
 
 .sidebar-wrapper .menu .sidebar-title {
