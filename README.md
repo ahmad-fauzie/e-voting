@@ -9,8 +9,7 @@
 
 ## Aplikasi E-Voting pemilihan Ketua OSIS SMKN 65 Jakarta
 
-Aplikasi ini mampu melakukan voting pemilihan ketua OSIS secara daring dilengkapi dengan countdown hasil pemilihan.
-Demo: https://e-voting-osis.000webhostapp.com/
+Aplikasi ini mampu melakukan voting pemilihan ketua OSIS secara daring dilengkapi dengan fitur diskusi dan countdown hasil pemilihan.
 
 
 ## Akun
@@ -22,10 +21,26 @@ Silahkan login menggunakan akun admin:
 
 ## Fitur
 
+- Auth (Login, Register, Reset Password)
+- Dashboard
 - Data master Siswa
 - Data Master Kandidat
 - Voting
 - QnA (Diskusi)
 - QuickCount
-- Setting Waktu
+- Jadwal Voting
 - Profile
+- Setting App
+
+
+## Alur Sistem
+
+1. Admin menambahkan data siswa (termasuk kandidat)
+2. Siswa (termasuk kandidat) mendaftarkan akun sesuai dengan data yang dimasukkan oleh admin
+3. Admin menambahkan data lengkap kandidat
+4. Admin mengatur jadwal voting
+5. Sesi tanya jawab antar siswa dan kandidat
+6. Siswa memilih ketika waktu voting dimulai
+7. Siswa melihat hasil voting secara live
+8. Admin melihat hasil voting dan mengunduh dokumen hasil voting
+9. Admin mereset hasil voting setelah seluruh proses pemilihan selesai
