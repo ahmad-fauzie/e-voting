@@ -41,7 +41,7 @@ class HasilController extends Controller
                 foreach($kandidats as $kandidat){
                     $hash = hash('sha512', $hasil->id_user . $kandidat->id);
                     if($hash == $hasil->pesan){
-                        $voting->push(['id_user' => $hasil->id_user, 'id_kandidat' => $kandidat->id, 'name' => $kandidat->name]);
+                        $voting->push(['id_user' => $hasil->id_user, 'id_kandidat' => $kandidat->id, 'name' => $kandidat->name, 'kelas' => $kandidat->kelas, 'jurusan' => $kandidat->jurusan]);
                     }
                 }
             }
@@ -51,6 +51,8 @@ class HasilController extends Controller
             $group = $voting->groupBy('name')->map(function ($row, $key) {
                 return [
                     'name'  => $key,
+                    'kelas' => isset($row[0]['kelas']) ? $row[0]['kelas'] : '',
+                    'jurusan' => isset($row[0]['jurusan']) ? $row[0]['jurusan'] : '',
                     'total_usage'  => $row->count(),
                 ];
             });
@@ -58,6 +60,8 @@ class HasilController extends Controller
             foreach ($group as $grup) {
                     $dataPoints[] = [
                     'name' => $grup['name'],
+                    'kelas' => $grup['kelas'],
+                    'jurusan' => $grup['jurusan'],
                     'y' => floatval($grup['total_usage'])
                 ];
             }
