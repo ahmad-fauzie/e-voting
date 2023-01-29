@@ -125,30 +125,6 @@
                                 <td class="text-center">{{ $hasil['kelas'] }} <span style="text-transform:uppercase">{{ $hasil['jurusan'] }}</span></td>
                                 <td class="text-center">{{ $hasil['total_usage'] }}</td>
                             </tr>
-                            <tr>
-                                <td class="text-center">{{ $no++ }}</td>
-                                <td class="text-center">{{ $hasil['name'] }}</td>
-                                <td class="text-center">{{ $hasil['kelas'] }} <span style="text-transform:uppercase">{{ $hasil['jurusan'] }}</span></td>
-                                <td class="text-center">{{ $hasil['total_usage'] }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">{{ $no++ }}</td>
-                                <td class="text-center">{{ $hasil['name'] }}</td>
-                                <td class="text-center">{{ $hasil['kelas'] }} <span style="text-transform:uppercase">{{ $hasil['jurusan'] }}</span></td>
-                                <td class="text-center">{{ $hasil['total_usage'] }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">{{ $no++ }}</td>
-                                <td class="text-center">{{ $hasil['name'] }}</td>
-                                <td class="text-center">{{ $hasil['kelas'] }} <span style="text-transform:uppercase">{{ $hasil['jurusan'] }}</span></td>
-                                <td class="text-center">{{ $hasil['total_usage'] }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">{{ $no++ }}</td>
-                                <td class="text-center">{{ $hasil['name'] }}</td>
-                                <td class="text-center">{{ $hasil['kelas'] }} <span style="text-transform:uppercase">{{ $hasil['jurusan'] }}</span></td>
-                                <td class="text-center">{{ $hasil['total_usage'] }}</td>
-                            </tr>
                         @endforeach
                     </tbody>
                 </table>
