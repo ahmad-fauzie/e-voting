@@ -139,7 +139,7 @@ class SiswaController extends Controller
         $user = User::all();
         if($siswa->id_user != ''){
           return response()->json([
-            'status' => 404,
+            'status' => 406,
             'siswa' => $siswa,
             'message' => 'Data Ini Sudah Terdaftar!',
           ]);

@@ -107,6 +107,7 @@
                     url: 'http://worldtimeapi.org/api/timezone/Asia/Jakarta',
                     method: 'get',
                     header: {
+                        'access-control-allow-credentials': 'true',
                         'Access-Control-Allow-Origin': '*',
                     },
                     success: function(response) {
@@ -231,6 +232,7 @@
                     body,
                     method: 'post',
                     header: {
+                        'Content-Type': 'text/html; charset=UTF-8',
                         'Access-Control-Allow-Origin': '*',
                     },
                 }).then(result => result.blob());

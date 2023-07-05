@@ -146,6 +146,7 @@
                             @csrf
                             <div class="modal-body text-dark">
                                 <input type="hidden" name="siswa_id" id="siswa_id">
+                                {{-- <input type="hidden" name="siswa_id_user" id="siswa_id_user"> --}}
                                 <div class="form-group mb-3">
                                     <label for="nama" class="form-label">Nama Lengkap</label>
                                     <input type="text" id="name" name="name" class="form-control"
@@ -290,6 +291,7 @@
                         $("#email").val(siswa.email);
                         $("#nis").val(siswa.nis);
                         $("#siswa_id").val(siswa.id);
+                        // $("#siswa_id_user").val(siswa.id_user);
                         if (response.status == 406) {
                             Swal.fire({
                                 title: 'Apakah Kamu Yakin?',
