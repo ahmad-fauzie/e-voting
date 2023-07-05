@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Kandidat;
 use App\Models\User;
 use App\Models\Hasil;
 use App\Imports\SiswaImport;
@@ -136,16 +137,33 @@ class SiswaController extends Controller
     {
         $id = $request->id;
         $siswa = Siswa::find($id);
+        // $kandidat = Kandidat::all();
         $user = User::all();
+        $id_kandidat = '';
+        if(Kandidat::where('email', $siswa->email)->where('nis', $siswa->nis)->first() != null){
+          $kandidats = Kandidat::where('email', $siswa->email)->where('nis', $siswa->nis)->first();
+          $kandidat = Kandidat::find($kandidats->id);
+          $id_kandidat = $kandidat->id;
+        }
         if($siswa->id_user != ''){
           return response()->json([
             'status' => 406,
             'siswa' => $siswa,
-            'message' => 'Data Ini Sudah Terdaftar!',
+            'kandidat' => $id_kandidat,
+            'message' => $id_kandidat != '' ? 'Data Ini Sudah Terdaftar Dan Menjadi Kandidat!' : 'Data Ini Sudah Terdaftar!',
+          ]);
+        }
+        else if($siswa->id_user == '' && $id_kandidat != ''){
+          return response()->json([
+            'status' => 406,
+            'siswa' => $siswa,
+            'kandidat' => $id_kandidat,
+            'message' => 'Data Ini Sudah Terdaftar Sebagai Kandidat!',
           ]);
         }
         return response()->json([
           'status' => 200,
+          'kandidat' => $id_kandidat,
           'siswa' => $siswa,
         ]);
     }
@@ -166,12 +184,20 @@ class SiswaController extends Controller
           $user = User::find($siswa->id_user);
           $siswa->update($siswaData);
           $user->update($siswaData);
+          if($request->siswa_id_kandidat != ''){
+            $kandidat = Kandidat::find($request->siswa_id_kandidat);
+            $kandidat->update($siswaData);
+          }
           return response()->json([
             'status' => 200,
           ]);
         } else if(User::find($siswa->id_user == null) && (!(($request->nis != $siswa->nis) xor Siswa::where('nis', $request->nis)->first() == null) && !(($request->email != $siswa->email) xor Siswa::where('email', $request->email)->first() == null))){
           $user = User::find($siswa->id_user);
           $siswa->update($siswaData);
+          if($request->siswa_id_kandidat != ''){
+            $kandidat = Kandidat::find($request->siswa_id_kandidat);
+            $kandidat->update($siswaData);
+          }
           return response()->json([
             'status' => 200,
           ]);
