@@ -148,21 +148,22 @@
                                     'Berhasil!',
                                     'Kamu Telah Berhasil Memilih.',
                                     'success'
-                                )
-                                Swal.fire({
-                                    title: 'Berhasil',
-                                    text: 'Kamu Telah Berhasil Memilih. Mohon Isi Feedback Dengan Menekan Tombol Oke.',
-                                    icon: 'success',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Oke',
-                                    cancelButtonText: 'Nanti',
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location = 'feedback';
-                                    }
-                                });
+                                );
+                                // Swal.fire({
+                                //     title: 'Berhasil',
+                                //     text: 'Kamu Telah Berhasil Memilih. Mohon Isi Feedback Dengan Menekan Tombol Oke.',
+                                //     icon: 'success',
+                                //     showCancelButton: true,
+                                //     confirmButtonColor: '#3085d6',
+                                //     cancelButtonColor: '#d33',
+                                //     confirmButtonText: 'Oke',
+                                //     cancelButtonText: 'Nanti',
+                                // })
+                                // .then((result) => {
+                                //     if (result.isConfirmed) {
+                                //         window.location = 'feedback';
+                                //     }
+                                // });
                             }
                         });
                     }

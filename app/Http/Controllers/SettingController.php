@@ -19,6 +19,7 @@ class SettingController extends Controller
 
     public function deleteVoting(){
         Hasil::truncate();
+        Siswa::query()->update(['status' => 'Belum Memilih']);
         return response()->json([
             'status' => 200,
         ]);

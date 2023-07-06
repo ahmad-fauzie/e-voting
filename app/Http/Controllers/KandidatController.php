@@ -44,7 +44,7 @@ class KandidatController extends Controller
       foreach ($kandidats as $kandidat) {
         $output .= '<tr>
                 <td>' . $no++ . '</td>
-                <td><img src="storage/kandidats/' . $kandidat->foto . '" width="50" class="img-thumbnail rounded-circle"></td>
+                <td><img src="storage/kandidats/' . $kandidat->foto . '" width="50" class="img-thumbnail rounded-circle" style="height:47px;"></td>
                 <td>' . $kandidat->name . '</td>
                 <td>' . $kandidat->email . '</td>
                 <td>' . $kandidat->nis . '</td>
@@ -115,7 +115,9 @@ class KandidatController extends Controller
   public function update(Request $request) {
     $fileName = '';
     $kandidat = Kandidat::find($request->kandidat_id);
-    if(!($request->nis != $kandidat->nis xor Kandidat::where('nis', $request->nis) == null) && !($request->email != $kandidat->email xor Kandidat::where('email', $request->email) == null)){
+    // if((!($request->nis != $kandidat->nis xor Kandidat::where('nis', $request->nis) == null) && !($request->email != $kandidat->email xor Kandidat::where('email', $request->email) == null))
+    //   || (Kandidat::where('nis', $request->nis) == null && Kandidat::where('email', $request->email) == null) ){
+    if( (Kandidat::where('nis',$request->nis)->where('email',$request->email)->first() == null || ($request->nis == $kandidat->nis && $request->email == $kandidat->email) )){
       if ($request->hasFile('foto')) {
         $file = $request->file('foto');
         $fileName = time() . '.' . $file->getClientOriginalExtension();

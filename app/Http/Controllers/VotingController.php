@@ -92,7 +92,7 @@ class VotingController extends Controller
                 $output .= '<div class="col-12 col-md-4 mx-md-auto">
                 <div class="card card-statistic">
                     <div class="card-body p-0 overflow-auto">
-                        <div class="d-flex justify-content-center align-item-center text-center m-4" style="min-height: 150px;">
+                        <div class="d-flex justify-content-center align-item-center text-center m-4" style="height: 150px;">
                             <img src="storage/kandidats/' . $kandidat->foto . '" alt="" width="150"
                                 class="rounded-circle">
                         </div>

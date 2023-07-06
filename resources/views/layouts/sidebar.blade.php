@@ -85,22 +85,22 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
+                {{-- <li class="sidebar-item {{ request()->routeIs('setting.*') ? 'active' : '' }}">
                     <a href="{{ route('setting.index') }}" class="sidebar-link">
                         <i data-feather="settings" width="20"></i>
                         <span>Setting</span>
                     </a>
-                </li>
+                </li> --}}
                 @endif
 
-                @if(Auth::check())
+                {{-- @if(Auth::check())
                 <li class="sidebar-item {{ request()->routeIs('feedback.*') ? 'active' : '' }}">
                     <a href="{{ route('feedback.index') }}" class="sidebar-link">
                         <i data-feather="thumbs-up" width="20"></i>
                         <span>Feedback</span>
                     </a>
                 </li>
-                @endif
+                @endif --}}
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
